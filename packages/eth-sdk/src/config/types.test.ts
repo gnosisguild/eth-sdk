@@ -1,5 +1,5 @@
 import { expect } from 'earljs'
-import { constants } from 'ethers'
+import { ZeroAddress } from 'ethers'
 
 import { EthSdkConfigInput, ethSdKContractsSchema } from '.'
 import { Address, parseAddress, parseEthSdkConfig } from './types'
@@ -11,8 +11,8 @@ describe('config types', () => {
     })
 
     it('parses an address', () => {
-      const actual: Address = parseAddress(constants.AddressZero)
-      expect(actual).toEqual(constants.AddressZero as Address)
+      const actual: Address = parseAddress(ZeroAddress)
+      expect(actual).toEqual(ZeroAddress as Address)
     })
   })
 
@@ -20,11 +20,11 @@ describe('config types', () => {
     it('parses valid schemas', () => {
       ethSdKContractsSchema.parse({
         mainnet: {
-          a: constants.AddressZero,
+          a: ZeroAddress,
           b: {
-            c: constants.AddressZero,
+            c: ZeroAddress,
             d: {
-              e: constants.AddressZero,
+              e: ZeroAddress,
             },
           },
         },
@@ -55,7 +55,7 @@ describe('config types', () => {
       const input = {
         contracts: {
           mainnet: {
-            dai: constants.AddressZero,
+            dai: ZeroAddress,
           },
         },
         rpc: {

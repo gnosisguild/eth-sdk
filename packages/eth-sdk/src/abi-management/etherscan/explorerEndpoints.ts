@@ -5,7 +5,6 @@ const ETHERSCAN_KEY = 'WW2B6KB1FAXNTWP8EJQJYFTK1CMG1W4DWZ'
 const OPTIMISM_KEY = 'UF822UT1YY28J5EHFFIKI5SPN8752AC7VV'
 const BSCSCAN_KEY = 'HFUM7BBA5MRUQCN5UMEQPUZBUPPRHIQT3Y'
 const FTMSCAN_KEY = 'EH9NPZVF1HMNAQMAUZKA4VF7EC23X37DGS'
-const HECOINFO_KEY = 'XEUTJF2439EP4HHD23H2AFEFQJHFGSG57R'
 const SNOWTRACE_KEY = 'IQEHAJ43W674REN5XV79WF47X37VEB8PIC'
 const ARBISCAN_KEY = 'X3ZWJBXC14HTIR3B9DNYGEUICEIKKZ9ENZ'
 const POLYGONSCAN_KEY = 'RV4YXDXEMIHXMC7ZXB8T82G4F56FRZ1SZQ'
@@ -62,14 +61,6 @@ export const predefinedExplorerEndpoints: PredefinedExplorerEndpoints = {
   bscTestnet: {
     url: 'https://api-testnet.bscscan.com/api',
     apiKey: BSCSCAN_KEY,
-  },
-  heco: {
-    url: 'https://api.hecoinfo.com/api',
-    apiKey: HECOINFO_KEY,
-  },
-  hecoTestnet: {
-    url: 'https://api-testnet.hecoinfo.com/api',
-    apiKey: HECOINFO_KEY,
   },
   opera: {
     url: 'https://api.ftmscan.com/api',

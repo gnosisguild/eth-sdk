@@ -1,4 +1,4 @@
-import type { JsonFragment } from '@ethersproject/abi'
+import { JsonFragment } from 'ethers'
 
 import type { EthSdkConfig } from './config/types'
 import type { EthSdkCliArgs } from './parseArgs'

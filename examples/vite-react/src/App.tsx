@@ -1,7 +1,7 @@
 import './App.css'
 
 import { getMainnetSdk } from '@gnosis-guild/eth-sdk-client'
-import { ethers } from 'ethers'
+import { formatUnits, getDefaultProvider, Wallet } from 'ethers'
 import { Suspense, useState } from 'react'
 import { useQuery } from 'react-query'
 
@@ -42,8 +42,8 @@ export function App() {
   )
 }
 
-const mainnetProvider = ethers.getDefaultProvider('mainnet')
-const defaultSigner = ethers.Wallet.createRandom().connect(mainnetProvider)
+const mainnetProvider = getDefaultProvider('mainnet')
+const defaultSigner = Wallet.createRandom().connect(mainnetProvider)
 const { dai } = getMainnetSdk(defaultSigner)
 
 function useDaiBalance(address: string, options: { suspense?: boolean } = {}) {
@@ -52,7 +52,7 @@ function useDaiBalance(address: string, options: { suspense?: boolean } = {}) {
     async () => {
       const balance = await dai.balanceOf(address)
 
-      return ethers.utils.formatUnits(balance, 18)
+      return formatUnits(balance, 18)
     },
     options,
   )

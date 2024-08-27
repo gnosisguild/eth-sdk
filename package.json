@@ -51,7 +51,7 @@
     "proxyquire": "^2.1.3",
     "ts-essentials": "^9.0.0",
     "ts-node": "^10.4.0",
-    "typescript": "^4",
+    "typescript": "5.3.3",
     "wsrun": "^5.2.4"
   }
 }

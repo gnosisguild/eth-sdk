@@ -1,5 +1,5 @@
 import { expect, mockFn } from 'earljs'
-import { constants } from 'ethers'
+import { ZeroAddress } from 'ethers'
 
 import { parseAddress, UserEtherscanURLs } from '../../config'
 import { FetchJson } from '../../peripherals/fetchJson'
@@ -85,7 +85,7 @@ describe(getAbiFromEtherscan.name, () => {
   })
 })
 
-const ADDRESS_ZERO = parseAddress(constants.AddressZero)
+const ADDRESS_ZERO = parseAddress(ZeroAddress)
 const DAI_ADDRESS = parseAddress('0x6B175474E89094C44Da98b954EedeAC495271d0F')
 
 const RETURNED_ABI = ['{{ RETURNED_ABI }}'] as Abi

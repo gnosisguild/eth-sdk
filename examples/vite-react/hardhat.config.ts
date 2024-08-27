@@ -1,4 +1,6 @@
-require('@nomiclabs/hardhat-ethers') as typeof import('@nomiclabs/hardhat-ethers')
+import path from 'path'
+
+require('@nomicfoundation/hardhat-ethers') as typeof import('@nomicfoundation/hardhat-ethers')
 
 const { task } = require('hardhat/config') as typeof import('hardhat/config')
 
@@ -34,6 +36,9 @@ const config: import('hardhat/config').HardhatUserConfig = {
         blockNumber: 13485726,
       },
     },
+  },
+  typechain: {
+    target: require.resolve('@gnosis-guild/typechain-ethers-v6'),
   },
 }
 

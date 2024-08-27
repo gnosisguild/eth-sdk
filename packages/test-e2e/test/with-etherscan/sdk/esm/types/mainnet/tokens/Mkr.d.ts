@@ -1,61 +1,33 @@
-import type { BaseContract, BigNumber, BigNumberish, BytesLike, CallOverrides, ContractTransaction, Overrides, PopulatedTransaction, Signer, utils } from "ethers";
-import type { FunctionFragment, Result, EventFragment } from "@ethersproject/abi";
-import type { Listener, Provider } from "@ethersproject/providers";
-import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "../../common";
-export interface MkrInterface extends utils.Interface {
-    functions: {
-        "name()": FunctionFragment;
-        "stop()": FunctionFragment;
-        "approve(address,uint256)": FunctionFragment;
-        "approve(address)": FunctionFragment;
-        "setOwner(address)": FunctionFragment;
-        "totalSupply()": FunctionFragment;
-        "transferFrom(address,address,uint256)": FunctionFragment;
-        "decimals()": FunctionFragment;
-        "mint(address,uint256)": FunctionFragment;
-        "mint(uint256)": FunctionFragment;
-        "burn(uint256)": FunctionFragment;
-        "burn(address,uint256)": FunctionFragment;
-        "setName(bytes32)": FunctionFragment;
-        "balanceOf(address)": FunctionFragment;
-        "stopped()": FunctionFragment;
-        "setAuthority(address)": FunctionFragment;
-        "owner()": FunctionFragment;
-        "symbol()": FunctionFragment;
-        "transfer(address,uint256)": FunctionFragment;
-        "push(address,uint256)": FunctionFragment;
-        "move(address,address,uint256)": FunctionFragment;
-        "start()": FunctionFragment;
-        "authority()": FunctionFragment;
-        "allowance(address,address)": FunctionFragment;
-        "pull(address,uint256)": FunctionFragment;
-    };
-    getFunction(nameOrSignatureOrTopic: "name" | "stop" | "approve(address,uint256)" | "approve(address)" | "setOwner" | "totalSupply" | "transferFrom" | "decimals" | "mint(address,uint256)" | "mint(uint256)" | "burn(uint256)" | "burn(address,uint256)" | "setName" | "balanceOf" | "stopped" | "setAuthority" | "owner" | "symbol" | "transfer" | "push" | "move" | "start" | "authority" | "allowance" | "pull"): FunctionFragment;
+import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
+import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
+export interface MkrInterface extends Interface {
+    getFunction(nameOrSignature: "name" | "stop" | "approve(address,uint256)" | "approve(address)" | "setOwner" | "totalSupply" | "transferFrom" | "decimals" | "mint(address,uint256)" | "mint(uint256)" | "burn(uint256)" | "burn(address,uint256)" | "setName" | "balanceOf" | "stopped" | "setAuthority" | "owner" | "symbol" | "transfer" | "push" | "move" | "start" | "authority" | "allowance" | "pull"): FunctionFragment;
+    getEvent(nameOrSignatureOrTopic: "Mint" | "Burn" | "LogSetAuthority" | "LogSetOwner" | "LogNote" | "Transfer" | "Approval"): EventFragment;
     encodeFunctionData(functionFragment: "name", values?: undefined): string;
     encodeFunctionData(functionFragment: "stop", values?: undefined): string;
-    encodeFunctionData(functionFragment: "approve(address,uint256)", values: [string, BigNumberish]): string;
-    encodeFunctionData(functionFragment: "approve(address)", values: [string]): string;
-    encodeFunctionData(functionFragment: "setOwner", values: [string]): string;
+    encodeFunctionData(functionFragment: "approve(address,uint256)", values: [AddressLike, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "approve(address)", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "setOwner", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "totalSupply", values?: undefined): string;
-    encodeFunctionData(functionFragment: "transferFrom", values: [string, string, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "transferFrom", values: [AddressLike, AddressLike, BigNumberish]): string;
     encodeFunctionData(functionFragment: "decimals", values?: undefined): string;
-    encodeFunctionData(functionFragment: "mint(address,uint256)", values: [string, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "mint(address,uint256)", values: [AddressLike, BigNumberish]): string;
     encodeFunctionData(functionFragment: "mint(uint256)", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "burn(uint256)", values: [BigNumberish]): string;
-    encodeFunctionData(functionFragment: "burn(address,uint256)", values: [string, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "burn(address,uint256)", values: [AddressLike, BigNumberish]): string;
     encodeFunctionData(functionFragment: "setName", values: [BytesLike]): string;
-    encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
+    encodeFunctionData(functionFragment: "balanceOf", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "stopped", values?: undefined): string;
-    encodeFunctionData(functionFragment: "setAuthority", values: [string]): string;
+    encodeFunctionData(functionFragment: "setAuthority", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "owner", values?: undefined): string;
     encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
-    encodeFunctionData(functionFragment: "transfer", values: [string, BigNumberish]): string;
-    encodeFunctionData(functionFragment: "push", values: [string, BigNumberish]): string;
-    encodeFunctionData(functionFragment: "move", values: [string, string, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "transfer", values: [AddressLike, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "push", values: [AddressLike, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "move", values: [AddressLike, AddressLike, BigNumberish]): string;
     encodeFunctionData(functionFragment: "start", values?: undefined): string;
     encodeFunctionData(functionFragment: "authority", values?: undefined): string;
-    encodeFunctionData(functionFragment: "allowance", values: [string, string]): string;
-    encodeFunctionData(functionFragment: "pull", values: [string, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "allowance", values: [AddressLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "pull", values: [AddressLike, BigNumberish]): string;
     decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "stop", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "approve(address,uint256)", data: BytesLike): Result;
@@ -81,375 +53,312 @@ export interface MkrInterface extends utils.Interface {
     decodeFunctionResult(functionFragment: "authority", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "allowance", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "pull", data: BytesLike): Result;
-    events: {
-        "Mint(address,uint256)": EventFragment;
-        "Burn(address,uint256)": EventFragment;
-        "LogSetAuthority(address)": EventFragment;
-        "LogSetOwner(address)": EventFragment;
-        "LogNote(bytes4,address,bytes32,bytes32,uint256,bytes)": EventFragment;
-        "Transfer(address,address,uint256)": EventFragment;
-        "Approval(address,address,uint256)": EventFragment;
-    };
-    getEvent(nameOrSignatureOrTopic: "Mint"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "Burn"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "LogSetAuthority"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "LogSetOwner"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "LogNote"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
 }
-export interface MintEventObject {
-    guy: string;
-    wad: BigNumber;
+export declare namespace MintEvent {
+    type InputTuple = [guy: AddressLike, wad: BigNumberish];
+    type OutputTuple = [guy: string, wad: bigint];
+    interface OutputObject {
+        guy: string;
+        wad: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type MintEvent = TypedEvent<[string, BigNumber], MintEventObject>;
-export declare type MintEventFilter = TypedEventFilter<MintEvent>;
-export interface BurnEventObject {
-    guy: string;
-    wad: BigNumber;
+export declare namespace BurnEvent {
+    type InputTuple = [guy: AddressLike, wad: BigNumberish];
+    type OutputTuple = [guy: string, wad: bigint];
+    interface OutputObject {
+        guy: string;
+        wad: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type BurnEvent = TypedEvent<[string, BigNumber], BurnEventObject>;
-export declare type BurnEventFilter = TypedEventFilter<BurnEvent>;
-export interface LogSetAuthorityEventObject {
-    authority: string;
+export declare namespace LogSetAuthorityEvent {
+    type InputTuple = [authority: AddressLike];
+    type OutputTuple = [authority: string];
+    interface OutputObject {
+        authority: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type LogSetAuthorityEvent = TypedEvent<[
-    string
-], LogSetAuthorityEventObject>;
-export declare type LogSetAuthorityEventFilter = TypedEventFilter<LogSetAuthorityEvent>;
-export interface LogSetOwnerEventObject {
-    owner: string;
+export declare namespace LogSetOwnerEvent {
+    type InputTuple = [owner: AddressLike];
+    type OutputTuple = [owner: string];
+    interface OutputObject {
+        owner: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type LogSetOwnerEvent = TypedEvent<[string], LogSetOwnerEventObject>;
-export declare type LogSetOwnerEventFilter = TypedEventFilter<LogSetOwnerEvent>;
-export interface LogNoteEventObject {
-    sig: string;
-    guy: string;
-    foo: string;
-    bar: string;
-    wad: BigNumber;
-    fax: string;
+export declare namespace LogNoteEvent {
+    type InputTuple = [
+        sig: BytesLike,
+        guy: AddressLike,
+        foo: BytesLike,
+        bar: BytesLike,
+        wad: BigNumberish,
+        fax: BytesLike
+    ];
+    type OutputTuple = [
+        sig: string,
+        guy: string,
+        foo: string,
+        bar: string,
+        wad: bigint,
+        fax: string
+    ];
+    interface OutputObject {
+        sig: string;
+        guy: string;
+        foo: string;
+        bar: string;
+        wad: bigint;
+        fax: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type LogNoteEvent = TypedEvent<[
-    string,
-    string,
-    string,
-    string,
-    BigNumber,
-    string
-], LogNoteEventObject>;
-export declare type LogNoteEventFilter = TypedEventFilter<LogNoteEvent>;
-export interface TransferEventObject {
-    from: string;
-    to: string;
-    value: BigNumber;
+export declare namespace TransferEvent {
+    type InputTuple = [
+        from: AddressLike,
+        to: AddressLike,
+        value: BigNumberish
+    ];
+    type OutputTuple = [from: string, to: string, value: bigint];
+    interface OutputObject {
+        from: string;
+        to: string;
+        value: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type TransferEvent = TypedEvent<[
-    string,
-    string,
-    BigNumber
-], TransferEventObject>;
-export declare type TransferEventFilter = TypedEventFilter<TransferEvent>;
-export interface ApprovalEventObject {
-    owner: string;
-    spender: string;
-    value: BigNumber;
+export declare namespace ApprovalEvent {
+    type InputTuple = [
+        owner: AddressLike,
+        spender: AddressLike,
+        value: BigNumberish
+    ];
+    type OutputTuple = [owner: string, spender: string, value: bigint];
+    interface OutputObject {
+        owner: string;
+        spender: string;
+        value: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type ApprovalEvent = TypedEvent<[
-    string,
-    string,
-    BigNumber
-], ApprovalEventObject>;
-export declare type ApprovalEventFilter = TypedEventFilter<ApprovalEvent>;
 export interface Mkr extends BaseContract {
-    connect(signerOrProvider: Signer | Provider | string): this;
-    attach(addressOrName: string): this;
-    deployed(): Promise<this>;
+    connect(runner?: ContractRunner | null): Mkr;
+    waitForDeployment(): Promise<this>;
     interface: MkrInterface;
-    queryFilter<TEvent extends TypedEvent>(event: TypedEventFilter<TEvent>, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TEvent>>;
-    listeners<TEvent extends TypedEvent>(eventFilter?: TypedEventFilter<TEvent>): Array<TypedListener<TEvent>>;
-    listeners(eventName?: string): Array<Listener>;
-    removeAllListeners<TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>): this;
-    removeAllListeners(eventName?: string): this;
-    off: OnEvent<this>;
-    on: OnEvent<this>;
-    once: OnEvent<this>;
-    removeListener: OnEvent<this>;
-    functions: {
-        name(overrides?: CallOverrides): Promise<[string]>;
-        stop(overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        "approve(address,uint256)"(guy: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        "approve(address)"(guy: string, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        setOwner(owner_: string, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        totalSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
-        transferFrom(src: string, dst: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        decimals(overrides?: CallOverrides): Promise<[BigNumber]>;
-        "mint(address,uint256)"(guy: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        "mint(uint256)"(wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        "burn(uint256)"(wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        "burn(address,uint256)"(guy: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        setName(name_: BytesLike, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        balanceOf(src: string, overrides?: CallOverrides): Promise<[BigNumber]>;
-        stopped(overrides?: CallOverrides): Promise<[boolean]>;
-        setAuthority(authority_: string, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        owner(overrides?: CallOverrides): Promise<[string]>;
-        symbol(overrides?: CallOverrides): Promise<[string]>;
-        transfer(dst: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        push(dst: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        move(src: string, dst: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        start(overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        authority(overrides?: CallOverrides): Promise<[string]>;
-        allowance(src: string, guy: string, overrides?: CallOverrides): Promise<[BigNumber]>;
-        pull(src: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-    };
-    name(overrides?: CallOverrides): Promise<string>;
-    stop(overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    "approve(address,uint256)"(guy: string, wad: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    "approve(address)"(guy: string, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    setOwner(owner_: string, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
-    transferFrom(src: string, dst: string, wad: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    decimals(overrides?: CallOverrides): Promise<BigNumber>;
-    "mint(address,uint256)"(guy: string, wad: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    "mint(uint256)"(wad: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    "burn(uint256)"(wad: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    "burn(address,uint256)"(guy: string, wad: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    setName(name_: BytesLike, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    balanceOf(src: string, overrides?: CallOverrides): Promise<BigNumber>;
-    stopped(overrides?: CallOverrides): Promise<boolean>;
-    setAuthority(authority_: string, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    owner(overrides?: CallOverrides): Promise<string>;
-    symbol(overrides?: CallOverrides): Promise<string>;
-    transfer(dst: string, wad: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    push(dst: string, wad: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    move(src: string, dst: string, wad: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    start(overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    authority(overrides?: CallOverrides): Promise<string>;
-    allowance(src: string, guy: string, overrides?: CallOverrides): Promise<BigNumber>;
-    pull(src: string, wad: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    callStatic: {
-        name(overrides?: CallOverrides): Promise<string>;
-        stop(overrides?: CallOverrides): Promise<void>;
-        "approve(address,uint256)"(guy: string, wad: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
-        "approve(address)"(guy: string, overrides?: CallOverrides): Promise<boolean>;
-        setOwner(owner_: string, overrides?: CallOverrides): Promise<void>;
-        totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
-        transferFrom(src: string, dst: string, wad: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
-        decimals(overrides?: CallOverrides): Promise<BigNumber>;
-        "mint(address,uint256)"(guy: string, wad: BigNumberish, overrides?: CallOverrides): Promise<void>;
-        "mint(uint256)"(wad: BigNumberish, overrides?: CallOverrides): Promise<void>;
-        "burn(uint256)"(wad: BigNumberish, overrides?: CallOverrides): Promise<void>;
-        "burn(address,uint256)"(guy: string, wad: BigNumberish, overrides?: CallOverrides): Promise<void>;
-        setName(name_: BytesLike, overrides?: CallOverrides): Promise<void>;
-        balanceOf(src: string, overrides?: CallOverrides): Promise<BigNumber>;
-        stopped(overrides?: CallOverrides): Promise<boolean>;
-        setAuthority(authority_: string, overrides?: CallOverrides): Promise<void>;
-        owner(overrides?: CallOverrides): Promise<string>;
-        symbol(overrides?: CallOverrides): Promise<string>;
-        transfer(dst: string, wad: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
-        push(dst: string, wad: BigNumberish, overrides?: CallOverrides): Promise<void>;
-        move(src: string, dst: string, wad: BigNumberish, overrides?: CallOverrides): Promise<void>;
-        start(overrides?: CallOverrides): Promise<void>;
-        authority(overrides?: CallOverrides): Promise<string>;
-        allowance(src: string, guy: string, overrides?: CallOverrides): Promise<BigNumber>;
-        pull(src: string, wad: BigNumberish, overrides?: CallOverrides): Promise<void>;
-    };
+    queryFilter<TCEvent extends TypedContractEvent>(event: TCEvent, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    queryFilter<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    on<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    on<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    listeners<TCEvent extends TypedContractEvent>(event: TCEvent): Promise<Array<TypedListener<TCEvent>>>;
+    listeners(eventName?: string): Promise<Array<Listener>>;
+    removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
+    name: TypedContractMethod<[], [string], "view">;
+    stop: TypedContractMethod<[], [void], "nonpayable">;
+    "approve(address,uint256)": TypedContractMethod<[
+        guy: AddressLike,
+        wad: BigNumberish
+    ], [
+        boolean
+    ], "nonpayable">;
+    "approve(address)": TypedContractMethod<[
+        guy: AddressLike
+    ], [
+        boolean
+    ], "nonpayable">;
+    setOwner: TypedContractMethod<[owner_: AddressLike], [void], "nonpayable">;
+    totalSupply: TypedContractMethod<[], [bigint], "view">;
+    transferFrom: TypedContractMethod<[
+        src: AddressLike,
+        dst: AddressLike,
+        wad: BigNumberish
+    ], [
+        boolean
+    ], "nonpayable">;
+    decimals: TypedContractMethod<[], [bigint], "view">;
+    "mint(address,uint256)": TypedContractMethod<[
+        guy: AddressLike,
+        wad: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    "mint(uint256)": TypedContractMethod<[
+        wad: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    "burn(uint256)": TypedContractMethod<[
+        wad: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    "burn(address,uint256)": TypedContractMethod<[
+        guy: AddressLike,
+        wad: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    setName: TypedContractMethod<[name_: BytesLike], [void], "nonpayable">;
+    balanceOf: TypedContractMethod<[src: AddressLike], [bigint], "view">;
+    stopped: TypedContractMethod<[], [boolean], "view">;
+    setAuthority: TypedContractMethod<[
+        authority_: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    owner: TypedContractMethod<[], [string], "view">;
+    symbol: TypedContractMethod<[], [string], "view">;
+    transfer: TypedContractMethod<[
+        dst: AddressLike,
+        wad: BigNumberish
+    ], [
+        boolean
+    ], "nonpayable">;
+    push: TypedContractMethod<[
+        dst: AddressLike,
+        wad: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    move: TypedContractMethod<[
+        src: AddressLike,
+        dst: AddressLike,
+        wad: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    start: TypedContractMethod<[], [void], "nonpayable">;
+    authority: TypedContractMethod<[], [string], "view">;
+    allowance: TypedContractMethod<[
+        src: AddressLike,
+        guy: AddressLike
+    ], [
+        bigint
+    ], "view">;
+    pull: TypedContractMethod<[
+        src: AddressLike,
+        wad: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
+    getFunction(nameOrSignature: "name"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "stop"): TypedContractMethod<[], [void], "nonpayable">;
+    getFunction(nameOrSignature: "approve(address,uint256)"): TypedContractMethod<[
+        guy: AddressLike,
+        wad: BigNumberish
+    ], [
+        boolean
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "approve(address)"): TypedContractMethod<[guy: AddressLike], [boolean], "nonpayable">;
+    getFunction(nameOrSignature: "setOwner"): TypedContractMethod<[owner_: AddressLike], [void], "nonpayable">;
+    getFunction(nameOrSignature: "totalSupply"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "transferFrom"): TypedContractMethod<[
+        src: AddressLike,
+        dst: AddressLike,
+        wad: BigNumberish
+    ], [
+        boolean
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "decimals"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "mint(address,uint256)"): TypedContractMethod<[
+        guy: AddressLike,
+        wad: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "mint(uint256)"): TypedContractMethod<[wad: BigNumberish], [void], "nonpayable">;
+    getFunction(nameOrSignature: "burn(uint256)"): TypedContractMethod<[wad: BigNumberish], [void], "nonpayable">;
+    getFunction(nameOrSignature: "burn(address,uint256)"): TypedContractMethod<[
+        guy: AddressLike,
+        wad: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "setName"): TypedContractMethod<[name_: BytesLike], [void], "nonpayable">;
+    getFunction(nameOrSignature: "balanceOf"): TypedContractMethod<[src: AddressLike], [bigint], "view">;
+    getFunction(nameOrSignature: "stopped"): TypedContractMethod<[], [boolean], "view">;
+    getFunction(nameOrSignature: "setAuthority"): TypedContractMethod<[authority_: AddressLike], [void], "nonpayable">;
+    getFunction(nameOrSignature: "owner"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "symbol"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "transfer"): TypedContractMethod<[
+        dst: AddressLike,
+        wad: BigNumberish
+    ], [
+        boolean
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "push"): TypedContractMethod<[
+        dst: AddressLike,
+        wad: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "move"): TypedContractMethod<[
+        src: AddressLike,
+        dst: AddressLike,
+        wad: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "start"): TypedContractMethod<[], [void], "nonpayable">;
+    getFunction(nameOrSignature: "authority"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "allowance"): TypedContractMethod<[
+        src: AddressLike,
+        guy: AddressLike
+    ], [
+        bigint
+    ], "view">;
+    getFunction(nameOrSignature: "pull"): TypedContractMethod<[
+        src: AddressLike,
+        wad: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    getEvent(key: "Mint"): TypedContractEvent<MintEvent.InputTuple, MintEvent.OutputTuple, MintEvent.OutputObject>;
+    getEvent(key: "Burn"): TypedContractEvent<BurnEvent.InputTuple, BurnEvent.OutputTuple, BurnEvent.OutputObject>;
+    getEvent(key: "LogSetAuthority"): TypedContractEvent<LogSetAuthorityEvent.InputTuple, LogSetAuthorityEvent.OutputTuple, LogSetAuthorityEvent.OutputObject>;
+    getEvent(key: "LogSetOwner"): TypedContractEvent<LogSetOwnerEvent.InputTuple, LogSetOwnerEvent.OutputTuple, LogSetOwnerEvent.OutputObject>;
+    getEvent(key: "LogNote"): TypedContractEvent<LogNoteEvent.InputTuple, LogNoteEvent.OutputTuple, LogNoteEvent.OutputObject>;
+    getEvent(key: "Transfer"): TypedContractEvent<TransferEvent.InputTuple, TransferEvent.OutputTuple, TransferEvent.OutputObject>;
+    getEvent(key: "Approval"): TypedContractEvent<ApprovalEvent.InputTuple, ApprovalEvent.OutputTuple, ApprovalEvent.OutputObject>;
     filters: {
-        "Mint(address,uint256)"(guy?: string | null, wad?: null): MintEventFilter;
-        Mint(guy?: string | null, wad?: null): MintEventFilter;
-        "Burn(address,uint256)"(guy?: string | null, wad?: null): BurnEventFilter;
-        Burn(guy?: string | null, wad?: null): BurnEventFilter;
-        "LogSetAuthority(address)"(authority?: string | null): LogSetAuthorityEventFilter;
-        LogSetAuthority(authority?: string | null): LogSetAuthorityEventFilter;
-        "LogSetOwner(address)"(owner?: string | null): LogSetOwnerEventFilter;
-        LogSetOwner(owner?: string | null): LogSetOwnerEventFilter;
-        "LogNote(bytes4,address,bytes32,bytes32,uint256,bytes)"(sig?: BytesLike | null, guy?: string | null, foo?: BytesLike | null, bar?: BytesLike | null, wad?: null, fax?: null): LogNoteEventFilter;
-        LogNote(sig?: BytesLike | null, guy?: string | null, foo?: BytesLike | null, bar?: BytesLike | null, wad?: null, fax?: null): LogNoteEventFilter;
-        "Transfer(address,address,uint256)"(from?: string | null, to?: string | null, value?: null): TransferEventFilter;
-        Transfer(from?: string | null, to?: string | null, value?: null): TransferEventFilter;
-        "Approval(address,address,uint256)"(owner?: string | null, spender?: string | null, value?: null): ApprovalEventFilter;
-        Approval(owner?: string | null, spender?: string | null, value?: null): ApprovalEventFilter;
-    };
-    estimateGas: {
-        name(overrides?: CallOverrides): Promise<BigNumber>;
-        stop(overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        "approve(address,uint256)"(guy: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        "approve(address)"(guy: string, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        setOwner(owner_: string, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
-        transferFrom(src: string, dst: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        decimals(overrides?: CallOverrides): Promise<BigNumber>;
-        "mint(address,uint256)"(guy: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        "mint(uint256)"(wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        "burn(uint256)"(wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        "burn(address,uint256)"(guy: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        setName(name_: BytesLike, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        balanceOf(src: string, overrides?: CallOverrides): Promise<BigNumber>;
-        stopped(overrides?: CallOverrides): Promise<BigNumber>;
-        setAuthority(authority_: string, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        owner(overrides?: CallOverrides): Promise<BigNumber>;
-        symbol(overrides?: CallOverrides): Promise<BigNumber>;
-        transfer(dst: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        push(dst: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        move(src: string, dst: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        start(overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        authority(overrides?: CallOverrides): Promise<BigNumber>;
-        allowance(src: string, guy: string, overrides?: CallOverrides): Promise<BigNumber>;
-        pull(src: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-    };
-    populateTransaction: {
-        name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        stop(overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        "approve(address,uint256)"(guy: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        "approve(address)"(guy: string, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        setOwner(owner_: string, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        transferFrom(src: string, dst: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        decimals(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        "mint(address,uint256)"(guy: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        "mint(uint256)"(wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        "burn(uint256)"(wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        "burn(address,uint256)"(guy: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        setName(name_: BytesLike, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        balanceOf(src: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        stopped(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        setAuthority(authority_: string, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        transfer(dst: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        push(dst: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        move(src: string, dst: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        start(overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        authority(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        allowance(src: string, guy: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        pull(src: string, wad: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
+        "Mint(address,uint256)": TypedContractEvent<MintEvent.InputTuple, MintEvent.OutputTuple, MintEvent.OutputObject>;
+        Mint: TypedContractEvent<MintEvent.InputTuple, MintEvent.OutputTuple, MintEvent.OutputObject>;
+        "Burn(address,uint256)": TypedContractEvent<BurnEvent.InputTuple, BurnEvent.OutputTuple, BurnEvent.OutputObject>;
+        Burn: TypedContractEvent<BurnEvent.InputTuple, BurnEvent.OutputTuple, BurnEvent.OutputObject>;
+        "LogSetAuthority(address)": TypedContractEvent<LogSetAuthorityEvent.InputTuple, LogSetAuthorityEvent.OutputTuple, LogSetAuthorityEvent.OutputObject>;
+        LogSetAuthority: TypedContractEvent<LogSetAuthorityEvent.InputTuple, LogSetAuthorityEvent.OutputTuple, LogSetAuthorityEvent.OutputObject>;
+        "LogSetOwner(address)": TypedContractEvent<LogSetOwnerEvent.InputTuple, LogSetOwnerEvent.OutputTuple, LogSetOwnerEvent.OutputObject>;
+        LogSetOwner: TypedContractEvent<LogSetOwnerEvent.InputTuple, LogSetOwnerEvent.OutputTuple, LogSetOwnerEvent.OutputObject>;
+        "LogNote(bytes4,address,bytes32,bytes32,uint256,bytes)": TypedContractEvent<LogNoteEvent.InputTuple, LogNoteEvent.OutputTuple, LogNoteEvent.OutputObject>;
+        LogNote: TypedContractEvent<LogNoteEvent.InputTuple, LogNoteEvent.OutputTuple, LogNoteEvent.OutputObject>;
+        "Transfer(address,address,uint256)": TypedContractEvent<TransferEvent.InputTuple, TransferEvent.OutputTuple, TransferEvent.OutputObject>;
+        Transfer: TypedContractEvent<TransferEvent.InputTuple, TransferEvent.OutputTuple, TransferEvent.OutputObject>;
+        "Approval(address,address,uint256)": TypedContractEvent<ApprovalEvent.InputTuple, ApprovalEvent.OutputTuple, ApprovalEvent.OutputObject>;
+        Approval: TypedContractEvent<ApprovalEvent.InputTuple, ApprovalEvent.OutputTuple, ApprovalEvent.OutputObject>;
     };
 }

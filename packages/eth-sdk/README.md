@@ -14,9 +14,10 @@
 
 ## Fork notice
 
-This is a community fork of [@dethcrypto/eth-sdk](https://github.com/dethcrypto/eth-sdk) for making it ethers v6 compatible.
+This is a community fork of [@dethcrypto/eth-sdk](https://github.com/dethcrypto/eth-sdk) for making it ethers v6
+compatible.
 
-eth-sdk has been created and maintained by deth (@dethcrypto). 
+eth-sdk has been created and maintained by deth (@dethcrypto).
 
 ### License
 
@@ -169,7 +170,7 @@ Predefined network identifiers are:
 ```
 "mainnet"            "ropsten"            "rinkeby"
 "goerli"             "kovan"              "bsc"
-"bscTestnet"         "heco"               "hecoTestnet"
+"bscTestnet"
 "opera"              "ftmTestnet"         "optimism"
 "optimismKovan"      "polygon"            "polygonMumbai"
 "arbitrumOne"        "arbitrumTestnet"    "sepolia"
@@ -301,5 +302,3 @@ it's better to use TypeChain directly (especially via HardHat integration).
 # Contributing
 
 Check out our [contributing guidelines](./CONTRIBUTING.md).
-
-

@@ -1,5 +1,5 @@
 import { expect, mockFn } from 'earljs'
-import { constants } from 'ethers'
+import { ZeroAddress } from 'ethers'
 
 import { traverseContractsMap } from './traverse'
 import { EthSdkContracts, parseAddress } from './types'
@@ -8,7 +8,7 @@ describe('traverse', () => {
   it('traverses not-nested definitions', async () => {
     const def: EthSdkContracts = {
       mainnet: {
-        dai: parseAddress(constants.AddressZero),
+        dai: parseAddress(ZeroAddress),
       },
     }
 
@@ -16,7 +16,7 @@ describe('traverse', () => {
 
     await traverseContractsMap(def, traverseSpy)
 
-    expect(traverseSpy).toHaveBeenCalledExactlyWith([['mainnet', ['dai'], constants.AddressZero]])
+    expect(traverseSpy).toHaveBeenCalledExactlyWith([['mainnet', ['dai'], ZeroAddress]])
   })
 
   it('traverses nested definitions', async () => {

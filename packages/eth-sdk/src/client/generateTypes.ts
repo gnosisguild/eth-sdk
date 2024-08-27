@@ -9,7 +9,7 @@ export async function generateTypes(abisRoot: string, outputPath: string, typech
     cwd,
     allFiles: files,
     filesToProcess: files,
-    target: 'ethers-v5',
+    target: require.resolve('@gnosis-guild/typechain-ethers-v6'),
     outDir: outputPath,
     inputDir: abisRoot,
     flags: typechainFlags,

@@ -1,5 +1,4 @@
-import { Interface } from '@ethersproject/abi'
-import { BigNumber } from '@ethersproject/bignumber'
+import { Interface, toBeHex } from 'ethers'
 
 import { Address, parseAddress } from '../config'
 import { Abi, JsonFragment } from '../types'
@@ -8,11 +7,11 @@ import { RpcProvider } from './getRpcProvider'
 export async function detectProxy(address: Address, abi: Abi, provider: RpcProvider): Promise<DetectProxyResult> {
   const stored = await lookForImplementationAddr(address, abi, provider)
 
-  const asNumber = BigNumber.from(stored || 0)
-  if (!asNumber.isZero()) {
-    const implAddress = asNumber.toHexString()
+  const asNumber = BigInt(stored || 0)
+  if (asNumber !== BigInt(0)) {
+    const implAddress = toBeHex(asNumber)
     const code = await provider.getCode(implAddress)
-    const isContract = !BigNumber.from(code).isZero()
+    const isContract = BigInt(code) !== BigInt(0)
 
     if (isContract) {
       return { implAddress: parseAddress(implAddress), isProxy: true }
@@ -24,9 +23,9 @@ export async function detectProxy(address: Address, abi: Abi, provider: RpcProvi
 
 export type DetectProxyResult = { implAddress: Address; isProxy: true } | { isProxy: false }
 
-async function lookForImplementationAddr(address: Address, abi: Abi, provider: RpcProvider): Promise<BigNumber | null> {
+async function lookForImplementationAddr(address: Address, abi: Abi, provider: RpcProvider): Promise<bigint | null> {
   const call = async (name: string) =>
-    BigNumber.from(
+    BigInt(
       await provider.call({
         to: address,
         data: new Interface(abi).encodeFunctionData(name, []),
@@ -36,14 +35,14 @@ async function lookForImplementationAddr(address: Address, abi: Abi, provider: R
   // We check storage slot specified by EIP-1967 to hold implementation address.
   // see https://eips.ethereum.org/EIPS/eip-1967
   {
-    const stored = BigNumber.from(await provider.getStorageAt(address, EIP1967_IMPLEMENTATION_STORAGE_SLOT))
-    if (!stored.isZero()) return stored
+    const stored = BigInt(await provider.getStorage(address, EIP1967_IMPLEMENTATION_STORAGE_SLOT))
+    if (stored !== BigInt(0)) return stored
   }
   // We check storage slot specified by openzeppelin to hold implementation address.
   // see https://github.com/OpenZeppelin/openzeppelin-labs/blob/master/initializer_with_sol_editing/contracts/UpgradeabilityProxy.sol#L24
   {
-    const stored = BigNumber.from(await provider.getStorageAt(address, ZEPPELIN_IMPLEMENTATION_STORAGE_SLOT))
-    if (!stored.isZero()) return stored
+    const stored = BigInt(await provider.getStorage(address, ZEPPELIN_IMPLEMENTATION_STORAGE_SLOT))
+    if (stored !== BigInt(0)) return stored
   }
 
   // If there is an `.implementation` getter, we try to call it.

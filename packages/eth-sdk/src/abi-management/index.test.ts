@@ -15,7 +15,7 @@ describe(gatherABIs.name, () => {
   const rpcProvider = {
     call: mockFn<RpcProvider['call']>(),
     getCode: mockFn<RpcProvider['getCode']>(),
-    getStorageAt: mockFn<RpcProvider['getStorageAt']>().resolvesTo('0x0'),
+    getStorage: mockFn<RpcProvider['getStorage']>().resolvesTo('0x0'),
   }
 
   it('writes abi to output path', async () => {
@@ -83,7 +83,7 @@ describe(gatherABIs.name, () => {
     const getProvider = mockFn<GetRpcProvider>(() => ({
       ...rpcProvider,
       getCode: mockFn<RpcProvider['getCode']>().resolvesTo('0xfff'),
-      getStorageAt: mockFn<RpcProvider['getStorageAt']>().resolvesTo(implementationAddr),
+      getStorage: mockFn<RpcProvider['getStorage']>().resolvesTo(implementationAddr),
     }))
 
     await gatherABIs(ctx, getAbi, getProvider)
@@ -97,7 +97,7 @@ describe(gatherABIs.name, () => {
     const rpcProvider = {
       call: mockFn<RpcProvider['call']>().throws(new Error('.call should not be called')),
       getCode: mockFn<RpcProvider['getCode']>().throws(new Error('.getCode should not be called')),
-      getStorageAt: mockFn<RpcProvider['getStorageAt']>().throws(new Error('.getStorageAt should not be called')),
+      getStorage: mockFn<RpcProvider['getStorage']>().throws(new Error('.getStorage should not be called')),
     }
 
     const getAbi = mockFn((async () => []) as GetAbi)

@@ -12,9 +12,6 @@ export enum NetworkID {
   // Binance Smart Chain
   BSC = 56,
   BSC_TESTNET = 97,
-  // Huobi ECO Chain
-  HECO = 128,
-  HECO_TESTNET = 256,
   // Fantom mainnet
   OPERA = 250,
   FTM_TESTNET = 4002,
@@ -41,8 +38,6 @@ export const networkIDtoSymbol = {
   [NetworkID.KOVAN]: 'kovan',
   [NetworkID.BSC]: 'bsc',
   [NetworkID.BSC_TESTNET]: 'bscTestnet',
-  [NetworkID.HECO]: 'heco',
-  [NetworkID.HECO_TESTNET]: 'hecoTestnet',
   [NetworkID.OPERA]: 'opera',
   [NetworkID.FTM_TESTNET]: 'ftmTestnet',
   [NetworkID.OPTIMISTIC_ETHEREUM]: 'optimism',
@@ -67,7 +62,7 @@ export function isUserProvidedNetwork(
   return !!(symbol in userNetworks && userNetworks[symbol as keyof typeof userNetworks])
 }
 
-export type PredefinedNetworkSymbol = typeof networkIDtoSymbol[keyof typeof networkIDtoSymbol]
+export type PredefinedNetworkSymbol = (typeof networkIDtoSymbol)[keyof typeof networkIDtoSymbol]
 
 export type NetworkSymbol = UserProvidedNetworkSymbol | PredefinedNetworkSymbol
 

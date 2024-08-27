@@ -1,112 +1,50 @@
-import type { BaseContract, BigNumber, BigNumberish, BytesLike, CallOverrides, ContractTransaction, Overrides, PopulatedTransaction, Signer, utils } from "ethers";
-import type { FunctionFragment, Result, EventFragment } from "@ethersproject/abi";
-import type { Listener, Provider } from "@ethersproject/providers";
-import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "../../common";
-export interface ProxyStandardStorageSlotInterface extends utils.Interface {
-    functions: {
-        "advance()": FunctionFragment;
-        "allowance(address,address)": FunctionFragment;
-        "allowanceCoupons(address,address)": FunctionFragment;
-        "approve(address,uint256)": FunctionFragment;
-        "approveCoupons(address,uint256)": FunctionFragment;
-        "approveFor(address)": FunctionFragment;
-        "balanceOf(address)": FunctionFragment;
-        "balanceOfBonded(address)": FunctionFragment;
-        "balanceOfCoupons(address,uint256)": FunctionFragment;
-        "balanceOfStaged(address)": FunctionFragment;
-        "bond(uint256)": FunctionFragment;
-        "bootstrappingAt(uint256)": FunctionFragment;
-        "calculatePrice()": FunctionFragment;
-        "calculateReward()": FunctionFragment;
-        "commit(address)": FunctionFragment;
-        "couponPremium(uint256)": FunctionFragment;
-        "couponsExpiration(uint256)": FunctionFragment;
-        "decimals()": FunctionFragment;
-        "deposit(uint256)": FunctionFragment;
-        "dollar()": FunctionFragment;
-        "emergencyCommit(address)": FunctionFragment;
-        "epoch()": FunctionFragment;
-        "epochTime()": FunctionFragment;
-        "expiringCoupons(uint256)": FunctionFragment;
-        "expiringCouponsAtIndex(uint256,uint256)": FunctionFragment;
-        "fluidUntil(address)": FunctionFragment;
-        "implementation()": FunctionFragment;
-        "initialize()": FunctionFragment;
-        "isInitialized(address)": FunctionFragment;
-        "isNominated(address)": FunctionFragment;
-        "lockedUntil(address)": FunctionFragment;
-        "name()": FunctionFragment;
-        "oracle()": FunctionFragment;
-        "outstandingCoupons(uint256)": FunctionFragment;
-        "periodFor(address)": FunctionFragment;
-        "pool()": FunctionFragment;
-        "purchaseCoupons(uint256)": FunctionFragment;
-        "recordedVote(address,address)": FunctionFragment;
-        "redeemCoupons(uint256,uint256)": FunctionFragment;
-        "rejectFor(address)": FunctionFragment;
-        "startFor(address)": FunctionFragment;
-        "statusOf(address)": FunctionFragment;
-        "symbol()": FunctionFragment;
-        "totalBonded()": FunctionFragment;
-        "totalBondedAt(uint256)": FunctionFragment;
-        "totalCoupons()": FunctionFragment;
-        "totalDebt()": FunctionFragment;
-        "totalNet()": FunctionFragment;
-        "totalRedeemable()": FunctionFragment;
-        "totalStaged()": FunctionFragment;
-        "totalSupply()": FunctionFragment;
-        "transfer(address,uint256)": FunctionFragment;
-        "transferCoupons(address,address,uint256,uint256)": FunctionFragment;
-        "transferFrom(address,address,uint256)": FunctionFragment;
-        "unbond(uint256)": FunctionFragment;
-        "unbondUnderlying(uint256)": FunctionFragment;
-        "vote(address,uint8)": FunctionFragment;
-        "votesFor(address)": FunctionFragment;
-        "withdraw(uint256)": FunctionFragment;
-    };
-    getFunction(nameOrSignatureOrTopic: "advance" | "allowance" | "allowanceCoupons" | "approve" | "approveCoupons" | "approveFor" | "balanceOf" | "balanceOfBonded" | "balanceOfCoupons" | "balanceOfStaged" | "bond" | "bootstrappingAt" | "calculatePrice" | "calculateReward" | "commit" | "couponPremium" | "couponsExpiration" | "decimals" | "deposit" | "dollar" | "emergencyCommit" | "epoch" | "epochTime" | "expiringCoupons" | "expiringCouponsAtIndex" | "fluidUntil" | "implementation" | "initialize" | "isInitialized" | "isNominated" | "lockedUntil" | "name" | "oracle" | "outstandingCoupons" | "periodFor" | "pool" | "purchaseCoupons" | "recordedVote" | "redeemCoupons" | "rejectFor" | "startFor" | "statusOf" | "symbol" | "totalBonded" | "totalBondedAt" | "totalCoupons" | "totalDebt" | "totalNet" | "totalRedeemable" | "totalStaged" | "totalSupply" | "transfer" | "transferCoupons" | "transferFrom" | "unbond" | "unbondUnderlying" | "vote" | "votesFor" | "withdraw"): FunctionFragment;
+import type { BaseContract, BigNumberish, BytesLike, FunctionFragment, Result, Interface, EventFragment, AddressLike, ContractRunner, ContractMethod, Listener } from "ethers";
+import type { TypedContractEvent, TypedDeferredTopicFilter, TypedEventLog, TypedLogDescription, TypedListener, TypedContractMethod } from "../../common";
+export interface ProxyStandardStorageSlotInterface extends Interface {
+    getFunction(nameOrSignature: "advance" | "allowance" | "allowanceCoupons" | "approve" | "approveCoupons" | "approveFor" | "balanceOf" | "balanceOfBonded" | "balanceOfCoupons" | "balanceOfStaged" | "bond" | "bootstrappingAt" | "calculatePrice" | "calculateReward" | "commit" | "couponPremium" | "couponsExpiration" | "decimals" | "deposit" | "dollar" | "emergencyCommit" | "epoch" | "epochTime" | "expiringCoupons" | "expiringCouponsAtIndex" | "fluidUntil" | "implementation" | "initialize" | "isInitialized" | "isNominated" | "lockedUntil" | "name" | "oracle" | "outstandingCoupons" | "periodFor" | "pool" | "purchaseCoupons" | "recordedVote" | "redeemCoupons" | "rejectFor" | "startFor" | "statusOf" | "symbol" | "totalBonded" | "totalBondedAt" | "totalCoupons" | "totalDebt" | "totalNet" | "totalRedeemable" | "totalStaged" | "totalSupply" | "transfer" | "transferCoupons" | "transferFrom" | "unbond" | "unbondUnderlying" | "vote" | "votesFor" | "withdraw"): FunctionFragment;
+    getEvent(nameOrSignatureOrTopic: "Advance" | "Bond" | "Commit" | "CouponApproval" | "CouponExpiration" | "CouponPurchase" | "CouponRedemption" | "CouponTransfer" | "Deposit" | "Incentivization" | "Proposal" | "SupplyDecrease" | "SupplyIncrease" | "SupplyNeutral" | "Transfer" | "Unbond" | "Upgraded" | "Vote" | "Withdraw"): EventFragment;
     encodeFunctionData(functionFragment: "advance", values?: undefined): string;
-    encodeFunctionData(functionFragment: "allowance", values: [string, string]): string;
-    encodeFunctionData(functionFragment: "allowanceCoupons", values: [string, string]): string;
-    encodeFunctionData(functionFragment: "approve", values: [string, BigNumberish]): string;
-    encodeFunctionData(functionFragment: "approveCoupons", values: [string, BigNumberish]): string;
-    encodeFunctionData(functionFragment: "approveFor", values: [string]): string;
-    encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
-    encodeFunctionData(functionFragment: "balanceOfBonded", values: [string]): string;
-    encodeFunctionData(functionFragment: "balanceOfCoupons", values: [string, BigNumberish]): string;
-    encodeFunctionData(functionFragment: "balanceOfStaged", values: [string]): string;
+    encodeFunctionData(functionFragment: "allowance", values: [AddressLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "allowanceCoupons", values: [AddressLike, AddressLike]): string;
+    encodeFunctionData(functionFragment: "approve", values: [AddressLike, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "approveCoupons", values: [AddressLike, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "approveFor", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "balanceOf", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "balanceOfBonded", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "balanceOfCoupons", values: [AddressLike, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "balanceOfStaged", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "bond", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "bootstrappingAt", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "calculatePrice", values?: undefined): string;
     encodeFunctionData(functionFragment: "calculateReward", values?: undefined): string;
-    encodeFunctionData(functionFragment: "commit", values: [string]): string;
+    encodeFunctionData(functionFragment: "commit", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "couponPremium", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "couponsExpiration", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "decimals", values?: undefined): string;
     encodeFunctionData(functionFragment: "deposit", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "dollar", values?: undefined): string;
-    encodeFunctionData(functionFragment: "emergencyCommit", values: [string]): string;
+    encodeFunctionData(functionFragment: "emergencyCommit", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "epoch", values?: undefined): string;
     encodeFunctionData(functionFragment: "epochTime", values?: undefined): string;
     encodeFunctionData(functionFragment: "expiringCoupons", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "expiringCouponsAtIndex", values: [BigNumberish, BigNumberish]): string;
-    encodeFunctionData(functionFragment: "fluidUntil", values: [string]): string;
+    encodeFunctionData(functionFragment: "fluidUntil", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "implementation", values?: undefined): string;
     encodeFunctionData(functionFragment: "initialize", values?: undefined): string;
-    encodeFunctionData(functionFragment: "isInitialized", values: [string]): string;
-    encodeFunctionData(functionFragment: "isNominated", values: [string]): string;
-    encodeFunctionData(functionFragment: "lockedUntil", values: [string]): string;
+    encodeFunctionData(functionFragment: "isInitialized", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "isNominated", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "lockedUntil", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "name", values?: undefined): string;
     encodeFunctionData(functionFragment: "oracle", values?: undefined): string;
     encodeFunctionData(functionFragment: "outstandingCoupons", values: [BigNumberish]): string;
-    encodeFunctionData(functionFragment: "periodFor", values: [string]): string;
+    encodeFunctionData(functionFragment: "periodFor", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "pool", values?: undefined): string;
     encodeFunctionData(functionFragment: "purchaseCoupons", values: [BigNumberish]): string;
-    encodeFunctionData(functionFragment: "recordedVote", values: [string, string]): string;
+    encodeFunctionData(functionFragment: "recordedVote", values: [AddressLike, AddressLike]): string;
     encodeFunctionData(functionFragment: "redeemCoupons", values: [BigNumberish, BigNumberish]): string;
-    encodeFunctionData(functionFragment: "rejectFor", values: [string]): string;
-    encodeFunctionData(functionFragment: "startFor", values: [string]): string;
-    encodeFunctionData(functionFragment: "statusOf", values: [string]): string;
+    encodeFunctionData(functionFragment: "rejectFor", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "startFor", values: [AddressLike]): string;
+    encodeFunctionData(functionFragment: "statusOf", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
     encodeFunctionData(functionFragment: "totalBonded", values?: undefined): string;
     encodeFunctionData(functionFragment: "totalBondedAt", values: [BigNumberish]): string;
@@ -116,13 +54,13 @@ export interface ProxyStandardStorageSlotInterface extends utils.Interface {
     encodeFunctionData(functionFragment: "totalRedeemable", values?: undefined): string;
     encodeFunctionData(functionFragment: "totalStaged", values?: undefined): string;
     encodeFunctionData(functionFragment: "totalSupply", values?: undefined): string;
-    encodeFunctionData(functionFragment: "transfer", values: [string, BigNumberish]): string;
-    encodeFunctionData(functionFragment: "transferCoupons", values: [string, string, BigNumberish, BigNumberish]): string;
-    encodeFunctionData(functionFragment: "transferFrom", values: [string, string, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "transfer", values: [AddressLike, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "transferCoupons", values: [AddressLike, AddressLike, BigNumberish, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "transferFrom", values: [AddressLike, AddressLike, BigNumberish]): string;
     encodeFunctionData(functionFragment: "unbond", values: [BigNumberish]): string;
     encodeFunctionData(functionFragment: "unbondUnderlying", values: [BigNumberish]): string;
-    encodeFunctionData(functionFragment: "vote", values: [string, BigNumberish]): string;
-    encodeFunctionData(functionFragment: "votesFor", values: [string]): string;
+    encodeFunctionData(functionFragment: "vote", values: [AddressLike, BigNumberish]): string;
+    encodeFunctionData(functionFragment: "votesFor", values: [AddressLike]): string;
     encodeFunctionData(functionFragment: "withdraw", values: [BigNumberish]): string;
     decodeFunctionResult(functionFragment: "advance", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "allowance", data: BytesLike): Result;
@@ -183,745 +121,715 @@ export interface ProxyStandardStorageSlotInterface extends utils.Interface {
     decodeFunctionResult(functionFragment: "vote", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "votesFor", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
-    events: {
-        "Advance(uint256,uint256,uint256)": EventFragment;
-        "Bond(address,uint256,uint256,uint256)": EventFragment;
-        "Commit(address,address)": EventFragment;
-        "CouponApproval(address,address,uint256)": EventFragment;
-        "CouponExpiration(uint256,uint256,uint256,uint256,uint256)": EventFragment;
-        "CouponPurchase(address,uint256,uint256,uint256)": EventFragment;
-        "CouponRedemption(address,uint256,uint256)": EventFragment;
-        "CouponTransfer(address,address,uint256,uint256)": EventFragment;
-        "Deposit(address,uint256)": EventFragment;
-        "Incentivization(address,uint256)": EventFragment;
-        "Proposal(address,address,uint256,uint256)": EventFragment;
-        "SupplyDecrease(uint256,uint256,uint256)": EventFragment;
-        "SupplyIncrease(uint256,uint256,uint256,uint256,uint256)": EventFragment;
-        "SupplyNeutral(uint256)": EventFragment;
-        "Transfer(address,address,uint256)": EventFragment;
-        "Unbond(address,uint256,uint256,uint256)": EventFragment;
-        "Upgraded(address)": EventFragment;
-        "Vote(address,address,uint8,uint256)": EventFragment;
-        "Withdraw(address,uint256)": EventFragment;
-    };
-    getEvent(nameOrSignatureOrTopic: "Advance"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "Bond"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "Commit"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "CouponApproval"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "CouponExpiration"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "CouponPurchase"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "CouponRedemption"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "CouponTransfer"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "Deposit"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "Incentivization"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "Proposal"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "SupplyDecrease"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "SupplyIncrease"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "SupplyNeutral"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "Unbond"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "Upgraded"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "Vote"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "Withdraw"): EventFragment;
 }
-export interface AdvanceEventObject {
-    epoch: BigNumber;
-    block: BigNumber;
-    timestamp: BigNumber;
+export declare namespace AdvanceEvent {
+    type InputTuple = [
+        epoch: BigNumberish,
+        block: BigNumberish,
+        timestamp: BigNumberish
+    ];
+    type OutputTuple = [epoch: bigint, block: bigint, timestamp: bigint];
+    interface OutputObject {
+        epoch: bigint;
+        block: bigint;
+        timestamp: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type AdvanceEvent = TypedEvent<[
-    BigNumber,
-    BigNumber,
-    BigNumber
-], AdvanceEventObject>;
-export declare type AdvanceEventFilter = TypedEventFilter<AdvanceEvent>;
-export interface BondEventObject {
-    account: string;
-    start: BigNumber;
-    value: BigNumber;
-    valueUnderlying: BigNumber;
+export declare namespace BondEvent {
+    type InputTuple = [
+        account: AddressLike,
+        start: BigNumberish,
+        value: BigNumberish,
+        valueUnderlying: BigNumberish
+    ];
+    type OutputTuple = [
+        account: string,
+        start: bigint,
+        value: bigint,
+        valueUnderlying: bigint
+    ];
+    interface OutputObject {
+        account: string;
+        start: bigint;
+        value: bigint;
+        valueUnderlying: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type BondEvent = TypedEvent<[
-    string,
-    BigNumber,
-    BigNumber,
-    BigNumber
-], BondEventObject>;
-export declare type BondEventFilter = TypedEventFilter<BondEvent>;
-export interface CommitEventObject {
-    account: string;
-    candidate: string;
+export declare namespace CommitEvent {
+    type InputTuple = [account: AddressLike, candidate: AddressLike];
+    type OutputTuple = [account: string, candidate: string];
+    interface OutputObject {
+        account: string;
+        candidate: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type CommitEvent = TypedEvent<[string, string], CommitEventObject>;
-export declare type CommitEventFilter = TypedEventFilter<CommitEvent>;
-export interface CouponApprovalEventObject {
-    owner: string;
-    spender: string;
-    value: BigNumber;
+export declare namespace CouponApprovalEvent {
+    type InputTuple = [
+        owner: AddressLike,
+        spender: AddressLike,
+        value: BigNumberish
+    ];
+    type OutputTuple = [owner: string, spender: string, value: bigint];
+    interface OutputObject {
+        owner: string;
+        spender: string;
+        value: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type CouponApprovalEvent = TypedEvent<[
-    string,
-    string,
-    BigNumber
-], CouponApprovalEventObject>;
-export declare type CouponApprovalEventFilter = TypedEventFilter<CouponApprovalEvent>;
-export interface CouponExpirationEventObject {
-    epoch: BigNumber;
-    couponsExpired: BigNumber;
-    lessRedeemable: BigNumber;
-    lessDebt: BigNumber;
-    newBonded: BigNumber;
+export declare namespace CouponExpirationEvent {
+    type InputTuple = [
+        epoch: BigNumberish,
+        couponsExpired: BigNumberish,
+        lessRedeemable: BigNumberish,
+        lessDebt: BigNumberish,
+        newBonded: BigNumberish
+    ];
+    type OutputTuple = [
+        epoch: bigint,
+        couponsExpired: bigint,
+        lessRedeemable: bigint,
+        lessDebt: bigint,
+        newBonded: bigint
+    ];
+    interface OutputObject {
+        epoch: bigint;
+        couponsExpired: bigint;
+        lessRedeemable: bigint;
+        lessDebt: bigint;
+        newBonded: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type CouponExpirationEvent = TypedEvent<[
-    BigNumber,
-    BigNumber,
-    BigNumber,
-    BigNumber,
-    BigNumber
-], CouponExpirationEventObject>;
-export declare type CouponExpirationEventFilter = TypedEventFilter<CouponExpirationEvent>;
-export interface CouponPurchaseEventObject {
-    account: string;
-    epoch: BigNumber;
-    dollarAmount: BigNumber;
-    couponAmount: BigNumber;
+export declare namespace CouponPurchaseEvent {
+    type InputTuple = [
+        account: AddressLike,
+        epoch: BigNumberish,
+        dollarAmount: BigNumberish,
+        couponAmount: BigNumberish
+    ];
+    type OutputTuple = [
+        account: string,
+        epoch: bigint,
+        dollarAmount: bigint,
+        couponAmount: bigint
+    ];
+    interface OutputObject {
+        account: string;
+        epoch: bigint;
+        dollarAmount: bigint;
+        couponAmount: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type CouponPurchaseEvent = TypedEvent<[
-    string,
-    BigNumber,
-    BigNumber,
-    BigNumber
-], CouponPurchaseEventObject>;
-export declare type CouponPurchaseEventFilter = TypedEventFilter<CouponPurchaseEvent>;
-export interface CouponRedemptionEventObject {
-    account: string;
-    epoch: BigNumber;
-    couponAmount: BigNumber;
+export declare namespace CouponRedemptionEvent {
+    type InputTuple = [
+        account: AddressLike,
+        epoch: BigNumberish,
+        couponAmount: BigNumberish
+    ];
+    type OutputTuple = [
+        account: string,
+        epoch: bigint,
+        couponAmount: bigint
+    ];
+    interface OutputObject {
+        account: string;
+        epoch: bigint;
+        couponAmount: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type CouponRedemptionEvent = TypedEvent<[
-    string,
-    BigNumber,
-    BigNumber
-], CouponRedemptionEventObject>;
-export declare type CouponRedemptionEventFilter = TypedEventFilter<CouponRedemptionEvent>;
-export interface CouponTransferEventObject {
-    from: string;
-    to: string;
-    epoch: BigNumber;
-    value: BigNumber;
+export declare namespace CouponTransferEvent {
+    type InputTuple = [
+        from: AddressLike,
+        to: AddressLike,
+        epoch: BigNumberish,
+        value: BigNumberish
+    ];
+    type OutputTuple = [
+        from: string,
+        to: string,
+        epoch: bigint,
+        value: bigint
+    ];
+    interface OutputObject {
+        from: string;
+        to: string;
+        epoch: bigint;
+        value: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type CouponTransferEvent = TypedEvent<[
-    string,
-    string,
-    BigNumber,
-    BigNumber
-], CouponTransferEventObject>;
-export declare type CouponTransferEventFilter = TypedEventFilter<CouponTransferEvent>;
-export interface DepositEventObject {
-    account: string;
-    value: BigNumber;
+export declare namespace DepositEvent {
+    type InputTuple = [account: AddressLike, value: BigNumberish];
+    type OutputTuple = [account: string, value: bigint];
+    interface OutputObject {
+        account: string;
+        value: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type DepositEvent = TypedEvent<[string, BigNumber], DepositEventObject>;
-export declare type DepositEventFilter = TypedEventFilter<DepositEvent>;
-export interface IncentivizationEventObject {
-    account: string;
-    amount: BigNumber;
+export declare namespace IncentivizationEvent {
+    type InputTuple = [account: AddressLike, amount: BigNumberish];
+    type OutputTuple = [account: string, amount: bigint];
+    interface OutputObject {
+        account: string;
+        amount: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type IncentivizationEvent = TypedEvent<[
-    string,
-    BigNumber
-], IncentivizationEventObject>;
-export declare type IncentivizationEventFilter = TypedEventFilter<IncentivizationEvent>;
-export interface ProposalEventObject {
-    candidate: string;
-    account: string;
-    start: BigNumber;
-    period: BigNumber;
+export declare namespace ProposalEvent {
+    type InputTuple = [
+        candidate: AddressLike,
+        account: AddressLike,
+        start: BigNumberish,
+        period: BigNumberish
+    ];
+    type OutputTuple = [
+        candidate: string,
+        account: string,
+        start: bigint,
+        period: bigint
+    ];
+    interface OutputObject {
+        candidate: string;
+        account: string;
+        start: bigint;
+        period: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type ProposalEvent = TypedEvent<[
-    string,
-    string,
-    BigNumber,
-    BigNumber
-], ProposalEventObject>;
-export declare type ProposalEventFilter = TypedEventFilter<ProposalEvent>;
-export interface SupplyDecreaseEventObject {
-    epoch: BigNumber;
-    price: BigNumber;
-    newDebt: BigNumber;
+export declare namespace SupplyDecreaseEvent {
+    type InputTuple = [
+        epoch: BigNumberish,
+        price: BigNumberish,
+        newDebt: BigNumberish
+    ];
+    type OutputTuple = [epoch: bigint, price: bigint, newDebt: bigint];
+    interface OutputObject {
+        epoch: bigint;
+        price: bigint;
+        newDebt: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type SupplyDecreaseEvent = TypedEvent<[
-    BigNumber,
-    BigNumber,
-    BigNumber
-], SupplyDecreaseEventObject>;
-export declare type SupplyDecreaseEventFilter = TypedEventFilter<SupplyDecreaseEvent>;
-export interface SupplyIncreaseEventObject {
-    epoch: BigNumber;
-    price: BigNumber;
-    newRedeemable: BigNumber;
-    lessDebt: BigNumber;
-    newBonded: BigNumber;
+export declare namespace SupplyIncreaseEvent {
+    type InputTuple = [
+        epoch: BigNumberish,
+        price: BigNumberish,
+        newRedeemable: BigNumberish,
+        lessDebt: BigNumberish,
+        newBonded: BigNumberish
+    ];
+    type OutputTuple = [
+        epoch: bigint,
+        price: bigint,
+        newRedeemable: bigint,
+        lessDebt: bigint,
+        newBonded: bigint
+    ];
+    interface OutputObject {
+        epoch: bigint;
+        price: bigint;
+        newRedeemable: bigint;
+        lessDebt: bigint;
+        newBonded: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type SupplyIncreaseEvent = TypedEvent<[
-    BigNumber,
-    BigNumber,
-    BigNumber,
-    BigNumber,
-    BigNumber
-], SupplyIncreaseEventObject>;
-export declare type SupplyIncreaseEventFilter = TypedEventFilter<SupplyIncreaseEvent>;
-export interface SupplyNeutralEventObject {
-    epoch: BigNumber;
+export declare namespace SupplyNeutralEvent {
+    type InputTuple = [epoch: BigNumberish];
+    type OutputTuple = [epoch: bigint];
+    interface OutputObject {
+        epoch: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type SupplyNeutralEvent = TypedEvent<[
-    BigNumber
-], SupplyNeutralEventObject>;
-export declare type SupplyNeutralEventFilter = TypedEventFilter<SupplyNeutralEvent>;
-export interface TransferEventObject {
-    from: string;
-    to: string;
-    value: BigNumber;
+export declare namespace TransferEvent {
+    type InputTuple = [
+        from: AddressLike,
+        to: AddressLike,
+        value: BigNumberish
+    ];
+    type OutputTuple = [from: string, to: string, value: bigint];
+    interface OutputObject {
+        from: string;
+        to: string;
+        value: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type TransferEvent = TypedEvent<[
-    string,
-    string,
-    BigNumber
-], TransferEventObject>;
-export declare type TransferEventFilter = TypedEventFilter<TransferEvent>;
-export interface UnbondEventObject {
-    account: string;
-    start: BigNumber;
-    value: BigNumber;
-    valueUnderlying: BigNumber;
+export declare namespace UnbondEvent {
+    type InputTuple = [
+        account: AddressLike,
+        start: BigNumberish,
+        value: BigNumberish,
+        valueUnderlying: BigNumberish
+    ];
+    type OutputTuple = [
+        account: string,
+        start: bigint,
+        value: bigint,
+        valueUnderlying: bigint
+    ];
+    interface OutputObject {
+        account: string;
+        start: bigint;
+        value: bigint;
+        valueUnderlying: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type UnbondEvent = TypedEvent<[
-    string,
-    BigNumber,
-    BigNumber,
-    BigNumber
-], UnbondEventObject>;
-export declare type UnbondEventFilter = TypedEventFilter<UnbondEvent>;
-export interface UpgradedEventObject {
-    implementation: string;
+export declare namespace UpgradedEvent {
+    type InputTuple = [implementation: AddressLike];
+    type OutputTuple = [implementation: string];
+    interface OutputObject {
+        implementation: string;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type UpgradedEvent = TypedEvent<[string], UpgradedEventObject>;
-export declare type UpgradedEventFilter = TypedEventFilter<UpgradedEvent>;
-export interface VoteEventObject {
-    account: string;
-    candidate: string;
-    vote: number;
-    bonded: BigNumber;
+export declare namespace VoteEvent {
+    type InputTuple = [
+        account: AddressLike,
+        candidate: AddressLike,
+        vote: BigNumberish,
+        bonded: BigNumberish
+    ];
+    type OutputTuple = [
+        account: string,
+        candidate: string,
+        vote: bigint,
+        bonded: bigint
+    ];
+    interface OutputObject {
+        account: string;
+        candidate: string;
+        vote: bigint;
+        bonded: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type VoteEvent = TypedEvent<[
-    string,
-    string,
-    number,
-    BigNumber
-], VoteEventObject>;
-export declare type VoteEventFilter = TypedEventFilter<VoteEvent>;
-export interface WithdrawEventObject {
-    account: string;
-    value: BigNumber;
+export declare namespace WithdrawEvent {
+    type InputTuple = [account: AddressLike, value: BigNumberish];
+    type OutputTuple = [account: string, value: bigint];
+    interface OutputObject {
+        account: string;
+        value: bigint;
+    }
+    type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+    type Filter = TypedDeferredTopicFilter<Event>;
+    type Log = TypedEventLog<Event>;
+    type LogDescription = TypedLogDescription<Event>;
 }
-export declare type WithdrawEvent = TypedEvent<[
-    string,
-    BigNumber
-], WithdrawEventObject>;
-export declare type WithdrawEventFilter = TypedEventFilter<WithdrawEvent>;
 export interface ProxyStandardStorageSlot extends BaseContract {
-    connect(signerOrProvider: Signer | Provider | string): this;
-    attach(addressOrName: string): this;
-    deployed(): Promise<this>;
+    connect(runner?: ContractRunner | null): ProxyStandardStorageSlot;
+    waitForDeployment(): Promise<this>;
     interface: ProxyStandardStorageSlotInterface;
-    queryFilter<TEvent extends TypedEvent>(event: TypedEventFilter<TEvent>, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TEvent>>;
-    listeners<TEvent extends TypedEvent>(eventFilter?: TypedEventFilter<TEvent>): Array<TypedListener<TEvent>>;
-    listeners(eventName?: string): Array<Listener>;
-    removeAllListeners<TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>): this;
-    removeAllListeners(eventName?: string): this;
-    off: OnEvent<this>;
-    on: OnEvent<this>;
-    once: OnEvent<this>;
-    removeListener: OnEvent<this>;
-    functions: {
-        advance(overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        allowance(owner: string, spender: string, overrides?: CallOverrides): Promise<[BigNumber]>;
-        allowanceCoupons(owner: string, spender: string, overrides?: CallOverrides): Promise<[BigNumber]>;
-        approve(spender: string, amount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        approveCoupons(spender: string, amount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        approveFor(candidate: string, overrides?: CallOverrides): Promise<[BigNumber]>;
-        balanceOf(account: string, overrides?: CallOverrides): Promise<[BigNumber]>;
-        balanceOfBonded(account: string, overrides?: CallOverrides): Promise<[BigNumber]>;
-        balanceOfCoupons(account: string, epoch: BigNumberish, overrides?: CallOverrides): Promise<[BigNumber]>;
-        balanceOfStaged(account: string, overrides?: CallOverrides): Promise<[BigNumber]>;
-        bond(value: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        bootstrappingAt(epoch: BigNumberish, overrides?: CallOverrides): Promise<[boolean]>;
-        calculatePrice(overrides?: CallOverrides): Promise<[BigNumber]>;
-        calculateReward(overrides?: CallOverrides): Promise<[BigNumber]>;
-        commit(candidate: string, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        couponPremium(amount: BigNumberish, overrides?: CallOverrides): Promise<[BigNumber]>;
-        couponsExpiration(epoch: BigNumberish, overrides?: CallOverrides): Promise<[BigNumber]>;
-        decimals(overrides?: CallOverrides): Promise<[number]>;
-        deposit(value: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        dollar(overrides?: CallOverrides): Promise<[string]>;
-        emergencyCommit(candidate: string, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        epoch(overrides?: CallOverrides): Promise<[BigNumber]>;
-        epochTime(overrides?: CallOverrides): Promise<[BigNumber]>;
-        expiringCoupons(epoch: BigNumberish, overrides?: CallOverrides): Promise<[BigNumber]>;
-        expiringCouponsAtIndex(epoch: BigNumberish, i: BigNumberish, overrides?: CallOverrides): Promise<[BigNumber]>;
-        fluidUntil(account: string, overrides?: CallOverrides): Promise<[BigNumber]>;
-        implementation(overrides?: CallOverrides): Promise<[string] & {
-            impl: string;
-        }>;
-        initialize(overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        isInitialized(candidate: string, overrides?: CallOverrides): Promise<[boolean]>;
-        isNominated(candidate: string, overrides?: CallOverrides): Promise<[boolean]>;
-        lockedUntil(account: string, overrides?: CallOverrides): Promise<[BigNumber]>;
-        name(overrides?: CallOverrides): Promise<[string]>;
-        oracle(overrides?: CallOverrides): Promise<[string]>;
-        outstandingCoupons(epoch: BigNumberish, overrides?: CallOverrides): Promise<[BigNumber]>;
-        periodFor(candidate: string, overrides?: CallOverrides): Promise<[BigNumber]>;
-        pool(overrides?: CallOverrides): Promise<[string]>;
-        purchaseCoupons(dollarAmount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        recordedVote(account: string, candidate: string, overrides?: CallOverrides): Promise<[number]>;
-        redeemCoupons(couponEpoch: BigNumberish, couponAmount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        rejectFor(candidate: string, overrides?: CallOverrides): Promise<[BigNumber]>;
-        startFor(candidate: string, overrides?: CallOverrides): Promise<[BigNumber]>;
-        statusOf(account: string, overrides?: CallOverrides): Promise<[number]>;
-        symbol(overrides?: CallOverrides): Promise<[string]>;
-        totalBonded(overrides?: CallOverrides): Promise<[BigNumber]>;
-        totalBondedAt(epoch: BigNumberish, overrides?: CallOverrides): Promise<[BigNumber]>;
-        totalCoupons(overrides?: CallOverrides): Promise<[BigNumber]>;
-        totalDebt(overrides?: CallOverrides): Promise<[BigNumber]>;
-        totalNet(overrides?: CallOverrides): Promise<[BigNumber]>;
-        totalRedeemable(overrides?: CallOverrides): Promise<[BigNumber]>;
-        totalStaged(overrides?: CallOverrides): Promise<[BigNumber]>;
-        totalSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
-        transfer(recipient: string, amount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        transferCoupons(sender: string, recipient: string, epoch: BigNumberish, amount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        transferFrom(sender: string, recipient: string, amount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        unbond(value: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        unbondUnderlying(value: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        vote(candidate: string, vote: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-        votesFor(candidate: string, overrides?: CallOverrides): Promise<[BigNumber]>;
-        withdraw(value: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<ContractTransaction>;
-    };
-    advance(overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    allowance(owner: string, spender: string, overrides?: CallOverrides): Promise<BigNumber>;
-    allowanceCoupons(owner: string, spender: string, overrides?: CallOverrides): Promise<BigNumber>;
-    approve(spender: string, amount: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    approveCoupons(spender: string, amount: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    approveFor(candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
-    balanceOf(account: string, overrides?: CallOverrides): Promise<BigNumber>;
-    balanceOfBonded(account: string, overrides?: CallOverrides): Promise<BigNumber>;
-    balanceOfCoupons(account: string, epoch: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-    balanceOfStaged(account: string, overrides?: CallOverrides): Promise<BigNumber>;
-    bond(value: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    bootstrappingAt(epoch: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
-    calculatePrice(overrides?: CallOverrides): Promise<BigNumber>;
-    calculateReward(overrides?: CallOverrides): Promise<BigNumber>;
-    commit(candidate: string, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    couponPremium(amount: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-    couponsExpiration(epoch: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-    decimals(overrides?: CallOverrides): Promise<number>;
-    deposit(value: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    dollar(overrides?: CallOverrides): Promise<string>;
-    emergencyCommit(candidate: string, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    epoch(overrides?: CallOverrides): Promise<BigNumber>;
-    epochTime(overrides?: CallOverrides): Promise<BigNumber>;
-    expiringCoupons(epoch: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-    expiringCouponsAtIndex(epoch: BigNumberish, i: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-    fluidUntil(account: string, overrides?: CallOverrides): Promise<BigNumber>;
-    implementation(overrides?: CallOverrides): Promise<string>;
-    initialize(overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    isInitialized(candidate: string, overrides?: CallOverrides): Promise<boolean>;
-    isNominated(candidate: string, overrides?: CallOverrides): Promise<boolean>;
-    lockedUntil(account: string, overrides?: CallOverrides): Promise<BigNumber>;
-    name(overrides?: CallOverrides): Promise<string>;
-    oracle(overrides?: CallOverrides): Promise<string>;
-    outstandingCoupons(epoch: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-    periodFor(candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
-    pool(overrides?: CallOverrides): Promise<string>;
-    purchaseCoupons(dollarAmount: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    recordedVote(account: string, candidate: string, overrides?: CallOverrides): Promise<number>;
-    redeemCoupons(couponEpoch: BigNumberish, couponAmount: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    rejectFor(candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
-    startFor(candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
-    statusOf(account: string, overrides?: CallOverrides): Promise<number>;
-    symbol(overrides?: CallOverrides): Promise<string>;
-    totalBonded(overrides?: CallOverrides): Promise<BigNumber>;
-    totalBondedAt(epoch: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-    totalCoupons(overrides?: CallOverrides): Promise<BigNumber>;
-    totalDebt(overrides?: CallOverrides): Promise<BigNumber>;
-    totalNet(overrides?: CallOverrides): Promise<BigNumber>;
-    totalRedeemable(overrides?: CallOverrides): Promise<BigNumber>;
-    totalStaged(overrides?: CallOverrides): Promise<BigNumber>;
-    totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
-    transfer(recipient: string, amount: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    transferCoupons(sender: string, recipient: string, epoch: BigNumberish, amount: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    transferFrom(sender: string, recipient: string, amount: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    unbond(value: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    unbondUnderlying(value: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    vote(candidate: string, vote: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    votesFor(candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
-    withdraw(value: BigNumberish, overrides?: Overrides & {
-        from?: string | Promise<string>;
-    }): Promise<ContractTransaction>;
-    callStatic: {
-        advance(overrides?: CallOverrides): Promise<void>;
-        allowance(owner: string, spender: string, overrides?: CallOverrides): Promise<BigNumber>;
-        allowanceCoupons(owner: string, spender: string, overrides?: CallOverrides): Promise<BigNumber>;
-        approve(spender: string, amount: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
-        approveCoupons(spender: string, amount: BigNumberish, overrides?: CallOverrides): Promise<void>;
-        approveFor(candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
-        balanceOf(account: string, overrides?: CallOverrides): Promise<BigNumber>;
-        balanceOfBonded(account: string, overrides?: CallOverrides): Promise<BigNumber>;
-        balanceOfCoupons(account: string, epoch: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-        balanceOfStaged(account: string, overrides?: CallOverrides): Promise<BigNumber>;
-        bond(value: BigNumberish, overrides?: CallOverrides): Promise<void>;
-        bootstrappingAt(epoch: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
-        calculatePrice(overrides?: CallOverrides): Promise<BigNumber>;
-        calculateReward(overrides?: CallOverrides): Promise<BigNumber>;
-        commit(candidate: string, overrides?: CallOverrides): Promise<void>;
-        couponPremium(amount: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-        couponsExpiration(epoch: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-        decimals(overrides?: CallOverrides): Promise<number>;
-        deposit(value: BigNumberish, overrides?: CallOverrides): Promise<void>;
-        dollar(overrides?: CallOverrides): Promise<string>;
-        emergencyCommit(candidate: string, overrides?: CallOverrides): Promise<void>;
-        epoch(overrides?: CallOverrides): Promise<BigNumber>;
-        epochTime(overrides?: CallOverrides): Promise<BigNumber>;
-        expiringCoupons(epoch: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-        expiringCouponsAtIndex(epoch: BigNumberish, i: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-        fluidUntil(account: string, overrides?: CallOverrides): Promise<BigNumber>;
-        implementation(overrides?: CallOverrides): Promise<string>;
-        initialize(overrides?: CallOverrides): Promise<void>;
-        isInitialized(candidate: string, overrides?: CallOverrides): Promise<boolean>;
-        isNominated(candidate: string, overrides?: CallOverrides): Promise<boolean>;
-        lockedUntil(account: string, overrides?: CallOverrides): Promise<BigNumber>;
-        name(overrides?: CallOverrides): Promise<string>;
-        oracle(overrides?: CallOverrides): Promise<string>;
-        outstandingCoupons(epoch: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-        periodFor(candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
-        pool(overrides?: CallOverrides): Promise<string>;
-        purchaseCoupons(dollarAmount: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-        recordedVote(account: string, candidate: string, overrides?: CallOverrides): Promise<number>;
-        redeemCoupons(couponEpoch: BigNumberish, couponAmount: BigNumberish, overrides?: CallOverrides): Promise<void>;
-        rejectFor(candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
-        startFor(candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
-        statusOf(account: string, overrides?: CallOverrides): Promise<number>;
-        symbol(overrides?: CallOverrides): Promise<string>;
-        totalBonded(overrides?: CallOverrides): Promise<BigNumber>;
-        totalBondedAt(epoch: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-        totalCoupons(overrides?: CallOverrides): Promise<BigNumber>;
-        totalDebt(overrides?: CallOverrides): Promise<BigNumber>;
-        totalNet(overrides?: CallOverrides): Promise<BigNumber>;
-        totalRedeemable(overrides?: CallOverrides): Promise<BigNumber>;
-        totalStaged(overrides?: CallOverrides): Promise<BigNumber>;
-        totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
-        transfer(recipient: string, amount: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
-        transferCoupons(sender: string, recipient: string, epoch: BigNumberish, amount: BigNumberish, overrides?: CallOverrides): Promise<void>;
-        transferFrom(sender: string, recipient: string, amount: BigNumberish, overrides?: CallOverrides): Promise<boolean>;
-        unbond(value: BigNumberish, overrides?: CallOverrides): Promise<void>;
-        unbondUnderlying(value: BigNumberish, overrides?: CallOverrides): Promise<void>;
-        vote(candidate: string, vote: BigNumberish, overrides?: CallOverrides): Promise<void>;
-        votesFor(candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
-        withdraw(value: BigNumberish, overrides?: CallOverrides): Promise<void>;
-    };
+    queryFilter<TCEvent extends TypedContractEvent>(event: TCEvent, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    queryFilter<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TypedEventLog<TCEvent>>>;
+    on<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    on<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(event: TCEvent, listener: TypedListener<TCEvent>): Promise<this>;
+    once<TCEvent extends TypedContractEvent>(filter: TypedDeferredTopicFilter<TCEvent>, listener: TypedListener<TCEvent>): Promise<this>;
+    listeners<TCEvent extends TypedContractEvent>(event: TCEvent): Promise<Array<TypedListener<TCEvent>>>;
+    listeners(eventName?: string): Promise<Array<Listener>>;
+    removeAllListeners<TCEvent extends TypedContractEvent>(event?: TCEvent): Promise<this>;
+    advance: TypedContractMethod<[], [void], "nonpayable">;
+    allowance: TypedContractMethod<[
+        owner: AddressLike,
+        spender: AddressLike
+    ], [
+        bigint
+    ], "view">;
+    allowanceCoupons: TypedContractMethod<[
+        owner: AddressLike,
+        spender: AddressLike
+    ], [
+        bigint
+    ], "view">;
+    approve: TypedContractMethod<[
+        spender: AddressLike,
+        amount: BigNumberish
+    ], [
+        boolean
+    ], "nonpayable">;
+    approveCoupons: TypedContractMethod<[
+        spender: AddressLike,
+        amount: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    approveFor: TypedContractMethod<[candidate: AddressLike], [bigint], "view">;
+    balanceOf: TypedContractMethod<[account: AddressLike], [bigint], "view">;
+    balanceOfBonded: TypedContractMethod<[
+        account: AddressLike
+    ], [
+        bigint
+    ], "view">;
+    balanceOfCoupons: TypedContractMethod<[
+        account: AddressLike,
+        epoch: BigNumberish
+    ], [
+        bigint
+    ], "view">;
+    balanceOfStaged: TypedContractMethod<[
+        account: AddressLike
+    ], [
+        bigint
+    ], "view">;
+    bond: TypedContractMethod<[value: BigNumberish], [void], "nonpayable">;
+    bootstrappingAt: TypedContractMethod<[
+        epoch: BigNumberish
+    ], [
+        boolean
+    ], "view">;
+    calculatePrice: TypedContractMethod<[], [bigint], "view">;
+    calculateReward: TypedContractMethod<[], [bigint], "view">;
+    commit: TypedContractMethod<[candidate: AddressLike], [void], "nonpayable">;
+    couponPremium: TypedContractMethod<[amount: BigNumberish], [bigint], "view">;
+    couponsExpiration: TypedContractMethod<[
+        epoch: BigNumberish
+    ], [
+        bigint
+    ], "view">;
+    decimals: TypedContractMethod<[], [bigint], "view">;
+    deposit: TypedContractMethod<[value: BigNumberish], [void], "nonpayable">;
+    dollar: TypedContractMethod<[], [string], "view">;
+    emergencyCommit: TypedContractMethod<[
+        candidate: AddressLike
+    ], [
+        void
+    ], "nonpayable">;
+    epoch: TypedContractMethod<[], [bigint], "view">;
+    epochTime: TypedContractMethod<[], [bigint], "view">;
+    expiringCoupons: TypedContractMethod<[epoch: BigNumberish], [bigint], "view">;
+    expiringCouponsAtIndex: TypedContractMethod<[
+        epoch: BigNumberish,
+        i: BigNumberish
+    ], [
+        bigint
+    ], "view">;
+    fluidUntil: TypedContractMethod<[account: AddressLike], [bigint], "view">;
+    implementation: TypedContractMethod<[], [string], "view">;
+    initialize: TypedContractMethod<[], [void], "nonpayable">;
+    isInitialized: TypedContractMethod<[
+        candidate: AddressLike
+    ], [
+        boolean
+    ], "view">;
+    isNominated: TypedContractMethod<[candidate: AddressLike], [boolean], "view">;
+    lockedUntil: TypedContractMethod<[account: AddressLike], [bigint], "view">;
+    name: TypedContractMethod<[], [string], "view">;
+    oracle: TypedContractMethod<[], [string], "view">;
+    outstandingCoupons: TypedContractMethod<[
+        epoch: BigNumberish
+    ], [
+        bigint
+    ], "view">;
+    periodFor: TypedContractMethod<[candidate: AddressLike], [bigint], "view">;
+    pool: TypedContractMethod<[], [string], "view">;
+    purchaseCoupons: TypedContractMethod<[
+        dollarAmount: BigNumberish
+    ], [
+        bigint
+    ], "nonpayable">;
+    recordedVote: TypedContractMethod<[
+        account: AddressLike,
+        candidate: AddressLike
+    ], [
+        bigint
+    ], "view">;
+    redeemCoupons: TypedContractMethod<[
+        couponEpoch: BigNumberish,
+        couponAmount: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    rejectFor: TypedContractMethod<[candidate: AddressLike], [bigint], "view">;
+    startFor: TypedContractMethod<[candidate: AddressLike], [bigint], "view">;
+    statusOf: TypedContractMethod<[account: AddressLike], [bigint], "view">;
+    symbol: TypedContractMethod<[], [string], "view">;
+    totalBonded: TypedContractMethod<[], [bigint], "view">;
+    totalBondedAt: TypedContractMethod<[epoch: BigNumberish], [bigint], "view">;
+    totalCoupons: TypedContractMethod<[], [bigint], "view">;
+    totalDebt: TypedContractMethod<[], [bigint], "view">;
+    totalNet: TypedContractMethod<[], [bigint], "view">;
+    totalRedeemable: TypedContractMethod<[], [bigint], "view">;
+    totalStaged: TypedContractMethod<[], [bigint], "view">;
+    totalSupply: TypedContractMethod<[], [bigint], "view">;
+    transfer: TypedContractMethod<[
+        recipient: AddressLike,
+        amount: BigNumberish
+    ], [
+        boolean
+    ], "nonpayable">;
+    transferCoupons: TypedContractMethod<[
+        sender: AddressLike,
+        recipient: AddressLike,
+        epoch: BigNumberish,
+        amount: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    transferFrom: TypedContractMethod<[
+        sender: AddressLike,
+        recipient: AddressLike,
+        amount: BigNumberish
+    ], [
+        boolean
+    ], "nonpayable">;
+    unbond: TypedContractMethod<[value: BigNumberish], [void], "nonpayable">;
+    unbondUnderlying: TypedContractMethod<[
+        value: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    vote: TypedContractMethod<[
+        candidate: AddressLike,
+        vote: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    votesFor: TypedContractMethod<[candidate: AddressLike], [bigint], "view">;
+    withdraw: TypedContractMethod<[value: BigNumberish], [void], "nonpayable">;
+    getFunction<T extends ContractMethod = ContractMethod>(key: string | FunctionFragment): T;
+    getFunction(nameOrSignature: "advance"): TypedContractMethod<[], [void], "nonpayable">;
+    getFunction(nameOrSignature: "allowance"): TypedContractMethod<[
+        owner: AddressLike,
+        spender: AddressLike
+    ], [
+        bigint
+    ], "view">;
+    getFunction(nameOrSignature: "allowanceCoupons"): TypedContractMethod<[
+        owner: AddressLike,
+        spender: AddressLike
+    ], [
+        bigint
+    ], "view">;
+    getFunction(nameOrSignature: "approve"): TypedContractMethod<[
+        spender: AddressLike,
+        amount: BigNumberish
+    ], [
+        boolean
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "approveCoupons"): TypedContractMethod<[
+        spender: AddressLike,
+        amount: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "approveFor"): TypedContractMethod<[candidate: AddressLike], [bigint], "view">;
+    getFunction(nameOrSignature: "balanceOf"): TypedContractMethod<[account: AddressLike], [bigint], "view">;
+    getFunction(nameOrSignature: "balanceOfBonded"): TypedContractMethod<[account: AddressLike], [bigint], "view">;
+    getFunction(nameOrSignature: "balanceOfCoupons"): TypedContractMethod<[
+        account: AddressLike,
+        epoch: BigNumberish
+    ], [
+        bigint
+    ], "view">;
+    getFunction(nameOrSignature: "balanceOfStaged"): TypedContractMethod<[account: AddressLike], [bigint], "view">;
+    getFunction(nameOrSignature: "bond"): TypedContractMethod<[value: BigNumberish], [void], "nonpayable">;
+    getFunction(nameOrSignature: "bootstrappingAt"): TypedContractMethod<[epoch: BigNumberish], [boolean], "view">;
+    getFunction(nameOrSignature: "calculatePrice"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "calculateReward"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "commit"): TypedContractMethod<[candidate: AddressLike], [void], "nonpayable">;
+    getFunction(nameOrSignature: "couponPremium"): TypedContractMethod<[amount: BigNumberish], [bigint], "view">;
+    getFunction(nameOrSignature: "couponsExpiration"): TypedContractMethod<[epoch: BigNumberish], [bigint], "view">;
+    getFunction(nameOrSignature: "decimals"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "deposit"): TypedContractMethod<[value: BigNumberish], [void], "nonpayable">;
+    getFunction(nameOrSignature: "dollar"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "emergencyCommit"): TypedContractMethod<[candidate: AddressLike], [void], "nonpayable">;
+    getFunction(nameOrSignature: "epoch"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "epochTime"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "expiringCoupons"): TypedContractMethod<[epoch: BigNumberish], [bigint], "view">;
+    getFunction(nameOrSignature: "expiringCouponsAtIndex"): TypedContractMethod<[
+        epoch: BigNumberish,
+        i: BigNumberish
+    ], [
+        bigint
+    ], "view">;
+    getFunction(nameOrSignature: "fluidUntil"): TypedContractMethod<[account: AddressLike], [bigint], "view">;
+    getFunction(nameOrSignature: "implementation"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "initialize"): TypedContractMethod<[], [void], "nonpayable">;
+    getFunction(nameOrSignature: "isInitialized"): TypedContractMethod<[candidate: AddressLike], [boolean], "view">;
+    getFunction(nameOrSignature: "isNominated"): TypedContractMethod<[candidate: AddressLike], [boolean], "view">;
+    getFunction(nameOrSignature: "lockedUntil"): TypedContractMethod<[account: AddressLike], [bigint], "view">;
+    getFunction(nameOrSignature: "name"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "oracle"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "outstandingCoupons"): TypedContractMethod<[epoch: BigNumberish], [bigint], "view">;
+    getFunction(nameOrSignature: "periodFor"): TypedContractMethod<[candidate: AddressLike], [bigint], "view">;
+    getFunction(nameOrSignature: "pool"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "purchaseCoupons"): TypedContractMethod<[dollarAmount: BigNumberish], [bigint], "nonpayable">;
+    getFunction(nameOrSignature: "recordedVote"): TypedContractMethod<[
+        account: AddressLike,
+        candidate: AddressLike
+    ], [
+        bigint
+    ], "view">;
+    getFunction(nameOrSignature: "redeemCoupons"): TypedContractMethod<[
+        couponEpoch: BigNumberish,
+        couponAmount: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "rejectFor"): TypedContractMethod<[candidate: AddressLike], [bigint], "view">;
+    getFunction(nameOrSignature: "startFor"): TypedContractMethod<[candidate: AddressLike], [bigint], "view">;
+    getFunction(nameOrSignature: "statusOf"): TypedContractMethod<[account: AddressLike], [bigint], "view">;
+    getFunction(nameOrSignature: "symbol"): TypedContractMethod<[], [string], "view">;
+    getFunction(nameOrSignature: "totalBonded"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "totalBondedAt"): TypedContractMethod<[epoch: BigNumberish], [bigint], "view">;
+    getFunction(nameOrSignature: "totalCoupons"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "totalDebt"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "totalNet"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "totalRedeemable"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "totalStaged"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "totalSupply"): TypedContractMethod<[], [bigint], "view">;
+    getFunction(nameOrSignature: "transfer"): TypedContractMethod<[
+        recipient: AddressLike,
+        amount: BigNumberish
+    ], [
+        boolean
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "transferCoupons"): TypedContractMethod<[
+        sender: AddressLike,
+        recipient: AddressLike,
+        epoch: BigNumberish,
+        amount: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "transferFrom"): TypedContractMethod<[
+        sender: AddressLike,
+        recipient: AddressLike,
+        amount: BigNumberish
+    ], [
+        boolean
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "unbond"): TypedContractMethod<[value: BigNumberish], [void], "nonpayable">;
+    getFunction(nameOrSignature: "unbondUnderlying"): TypedContractMethod<[value: BigNumberish], [void], "nonpayable">;
+    getFunction(nameOrSignature: "vote"): TypedContractMethod<[
+        candidate: AddressLike,
+        vote: BigNumberish
+    ], [
+        void
+    ], "nonpayable">;
+    getFunction(nameOrSignature: "votesFor"): TypedContractMethod<[candidate: AddressLike], [bigint], "view">;
+    getFunction(nameOrSignature: "withdraw"): TypedContractMethod<[value: BigNumberish], [void], "nonpayable">;
+    getEvent(key: "Advance"): TypedContractEvent<AdvanceEvent.InputTuple, AdvanceEvent.OutputTuple, AdvanceEvent.OutputObject>;
+    getEvent(key: "Bond"): TypedContractEvent<BondEvent.InputTuple, BondEvent.OutputTuple, BondEvent.OutputObject>;
+    getEvent(key: "Commit"): TypedContractEvent<CommitEvent.InputTuple, CommitEvent.OutputTuple, CommitEvent.OutputObject>;
+    getEvent(key: "CouponApproval"): TypedContractEvent<CouponApprovalEvent.InputTuple, CouponApprovalEvent.OutputTuple, CouponApprovalEvent.OutputObject>;
+    getEvent(key: "CouponExpiration"): TypedContractEvent<CouponExpirationEvent.InputTuple, CouponExpirationEvent.OutputTuple, CouponExpirationEvent.OutputObject>;
+    getEvent(key: "CouponPurchase"): TypedContractEvent<CouponPurchaseEvent.InputTuple, CouponPurchaseEvent.OutputTuple, CouponPurchaseEvent.OutputObject>;
+    getEvent(key: "CouponRedemption"): TypedContractEvent<CouponRedemptionEvent.InputTuple, CouponRedemptionEvent.OutputTuple, CouponRedemptionEvent.OutputObject>;
+    getEvent(key: "CouponTransfer"): TypedContractEvent<CouponTransferEvent.InputTuple, CouponTransferEvent.OutputTuple, CouponTransferEvent.OutputObject>;
+    getEvent(key: "Deposit"): TypedContractEvent<DepositEvent.InputTuple, DepositEvent.OutputTuple, DepositEvent.OutputObject>;
+    getEvent(key: "Incentivization"): TypedContractEvent<IncentivizationEvent.InputTuple, IncentivizationEvent.OutputTuple, IncentivizationEvent.OutputObject>;
+    getEvent(key: "Proposal"): TypedContractEvent<ProposalEvent.InputTuple, ProposalEvent.OutputTuple, ProposalEvent.OutputObject>;
+    getEvent(key: "SupplyDecrease"): TypedContractEvent<SupplyDecreaseEvent.InputTuple, SupplyDecreaseEvent.OutputTuple, SupplyDecreaseEvent.OutputObject>;
+    getEvent(key: "SupplyIncrease"): TypedContractEvent<SupplyIncreaseEvent.InputTuple, SupplyIncreaseEvent.OutputTuple, SupplyIncreaseEvent.OutputObject>;
+    getEvent(key: "SupplyNeutral"): TypedContractEvent<SupplyNeutralEvent.InputTuple, SupplyNeutralEvent.OutputTuple, SupplyNeutralEvent.OutputObject>;
+    getEvent(key: "Transfer"): TypedContractEvent<TransferEvent.InputTuple, TransferEvent.OutputTuple, TransferEvent.OutputObject>;
+    getEvent(key: "Unbond"): TypedContractEvent<UnbondEvent.InputTuple, UnbondEvent.OutputTuple, UnbondEvent.OutputObject>;
+    getEvent(key: "Upgraded"): TypedContractEvent<UpgradedEvent.InputTuple, UpgradedEvent.OutputTuple, UpgradedEvent.OutputObject>;
+    getEvent(key: "Vote"): TypedContractEvent<VoteEvent.InputTuple, VoteEvent.OutputTuple, VoteEvent.OutputObject>;
+    getEvent(key: "Withdraw"): TypedContractEvent<WithdrawEvent.InputTuple, WithdrawEvent.OutputTuple, WithdrawEvent.OutputObject>;
     filters: {
-        "Advance(uint256,uint256,uint256)"(epoch?: BigNumberish | null, block?: null, timestamp?: null): AdvanceEventFilter;
-        Advance(epoch?: BigNumberish | null, block?: null, timestamp?: null): AdvanceEventFilter;
-        "Bond(address,uint256,uint256,uint256)"(account?: string | null, start?: null, value?: null, valueUnderlying?: null): BondEventFilter;
-        Bond(account?: string | null, start?: null, value?: null, valueUnderlying?: null): BondEventFilter;
-        "Commit(address,address)"(account?: string | null, candidate?: string | null): CommitEventFilter;
-        Commit(account?: string | null, candidate?: string | null): CommitEventFilter;
-        "CouponApproval(address,address,uint256)"(owner?: string | null, spender?: string | null, value?: null): CouponApprovalEventFilter;
-        CouponApproval(owner?: string | null, spender?: string | null, value?: null): CouponApprovalEventFilter;
-        "CouponExpiration(uint256,uint256,uint256,uint256,uint256)"(epoch?: BigNumberish | null, couponsExpired?: null, lessRedeemable?: null, lessDebt?: null, newBonded?: null): CouponExpirationEventFilter;
-        CouponExpiration(epoch?: BigNumberish | null, couponsExpired?: null, lessRedeemable?: null, lessDebt?: null, newBonded?: null): CouponExpirationEventFilter;
-        "CouponPurchase(address,uint256,uint256,uint256)"(account?: string | null, epoch?: BigNumberish | null, dollarAmount?: null, couponAmount?: null): CouponPurchaseEventFilter;
-        CouponPurchase(account?: string | null, epoch?: BigNumberish | null, dollarAmount?: null, couponAmount?: null): CouponPurchaseEventFilter;
-        "CouponRedemption(address,uint256,uint256)"(account?: string | null, epoch?: BigNumberish | null, couponAmount?: null): CouponRedemptionEventFilter;
-        CouponRedemption(account?: string | null, epoch?: BigNumberish | null, couponAmount?: null): CouponRedemptionEventFilter;
-        "CouponTransfer(address,address,uint256,uint256)"(from?: string | null, to?: string | null, epoch?: BigNumberish | null, value?: null): CouponTransferEventFilter;
-        CouponTransfer(from?: string | null, to?: string | null, epoch?: BigNumberish | null, value?: null): CouponTransferEventFilter;
-        "Deposit(address,uint256)"(account?: string | null, value?: null): DepositEventFilter;
-        Deposit(account?: string | null, value?: null): DepositEventFilter;
-        "Incentivization(address,uint256)"(account?: string | null, amount?: null): IncentivizationEventFilter;
-        Incentivization(account?: string | null, amount?: null): IncentivizationEventFilter;
-        "Proposal(address,address,uint256,uint256)"(candidate?: string | null, account?: string | null, start?: BigNumberish | null, period?: null): ProposalEventFilter;
-        Proposal(candidate?: string | null, account?: string | null, start?: BigNumberish | null, period?: null): ProposalEventFilter;
-        "SupplyDecrease(uint256,uint256,uint256)"(epoch?: BigNumberish | null, price?: null, newDebt?: null): SupplyDecreaseEventFilter;
-        SupplyDecrease(epoch?: BigNumberish | null, price?: null, newDebt?: null): SupplyDecreaseEventFilter;
-        "SupplyIncrease(uint256,uint256,uint256,uint256,uint256)"(epoch?: BigNumberish | null, price?: null, newRedeemable?: null, lessDebt?: null, newBonded?: null): SupplyIncreaseEventFilter;
-        SupplyIncrease(epoch?: BigNumberish | null, price?: null, newRedeemable?: null, lessDebt?: null, newBonded?: null): SupplyIncreaseEventFilter;
-        "SupplyNeutral(uint256)"(epoch?: BigNumberish | null): SupplyNeutralEventFilter;
-        SupplyNeutral(epoch?: BigNumberish | null): SupplyNeutralEventFilter;
-        "Transfer(address,address,uint256)"(from?: string | null, to?: string | null, value?: null): TransferEventFilter;
-        Transfer(from?: string | null, to?: string | null, value?: null): TransferEventFilter;
-        "Unbond(address,uint256,uint256,uint256)"(account?: string | null, start?: null, value?: null, valueUnderlying?: null): UnbondEventFilter;
-        Unbond(account?: string | null, start?: null, value?: null, valueUnderlying?: null): UnbondEventFilter;
-        "Upgraded(address)"(implementation?: string | null): UpgradedEventFilter;
-        Upgraded(implementation?: string | null): UpgradedEventFilter;
-        "Vote(address,address,uint8,uint256)"(account?: string | null, candidate?: string | null, vote?: null, bonded?: null): VoteEventFilter;
-        Vote(account?: string | null, candidate?: string | null, vote?: null, bonded?: null): VoteEventFilter;
-        "Withdraw(address,uint256)"(account?: string | null, value?: null): WithdrawEventFilter;
-        Withdraw(account?: string | null, value?: null): WithdrawEventFilter;
-    };
-    estimateGas: {
-        advance(overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        allowance(owner: string, spender: string, overrides?: CallOverrides): Promise<BigNumber>;
-        allowanceCoupons(owner: string, spender: string, overrides?: CallOverrides): Promise<BigNumber>;
-        approve(spender: string, amount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        approveCoupons(spender: string, amount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        approveFor(candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
-        balanceOf(account: string, overrides?: CallOverrides): Promise<BigNumber>;
-        balanceOfBonded(account: string, overrides?: CallOverrides): Promise<BigNumber>;
-        balanceOfCoupons(account: string, epoch: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-        balanceOfStaged(account: string, overrides?: CallOverrides): Promise<BigNumber>;
-        bond(value: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        bootstrappingAt(epoch: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-        calculatePrice(overrides?: CallOverrides): Promise<BigNumber>;
-        calculateReward(overrides?: CallOverrides): Promise<BigNumber>;
-        commit(candidate: string, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        couponPremium(amount: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-        couponsExpiration(epoch: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-        decimals(overrides?: CallOverrides): Promise<BigNumber>;
-        deposit(value: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        dollar(overrides?: CallOverrides): Promise<BigNumber>;
-        emergencyCommit(candidate: string, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        epoch(overrides?: CallOverrides): Promise<BigNumber>;
-        epochTime(overrides?: CallOverrides): Promise<BigNumber>;
-        expiringCoupons(epoch: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-        expiringCouponsAtIndex(epoch: BigNumberish, i: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-        fluidUntil(account: string, overrides?: CallOverrides): Promise<BigNumber>;
-        implementation(overrides?: CallOverrides): Promise<BigNumber>;
-        initialize(overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        isInitialized(candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
-        isNominated(candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
-        lockedUntil(account: string, overrides?: CallOverrides): Promise<BigNumber>;
-        name(overrides?: CallOverrides): Promise<BigNumber>;
-        oracle(overrides?: CallOverrides): Promise<BigNumber>;
-        outstandingCoupons(epoch: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-        periodFor(candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
-        pool(overrides?: CallOverrides): Promise<BigNumber>;
-        purchaseCoupons(dollarAmount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        recordedVote(account: string, candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
-        redeemCoupons(couponEpoch: BigNumberish, couponAmount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        rejectFor(candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
-        startFor(candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
-        statusOf(account: string, overrides?: CallOverrides): Promise<BigNumber>;
-        symbol(overrides?: CallOverrides): Promise<BigNumber>;
-        totalBonded(overrides?: CallOverrides): Promise<BigNumber>;
-        totalBondedAt(epoch: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-        totalCoupons(overrides?: CallOverrides): Promise<BigNumber>;
-        totalDebt(overrides?: CallOverrides): Promise<BigNumber>;
-        totalNet(overrides?: CallOverrides): Promise<BigNumber>;
-        totalRedeemable(overrides?: CallOverrides): Promise<BigNumber>;
-        totalStaged(overrides?: CallOverrides): Promise<BigNumber>;
-        totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
-        transfer(recipient: string, amount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        transferCoupons(sender: string, recipient: string, epoch: BigNumberish, amount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        transferFrom(sender: string, recipient: string, amount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        unbond(value: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        unbondUnderlying(value: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        vote(candidate: string, vote: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-        votesFor(candidate: string, overrides?: CallOverrides): Promise<BigNumber>;
-        withdraw(value: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<BigNumber>;
-    };
-    populateTransaction: {
-        advance(overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        allowance(owner: string, spender: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        allowanceCoupons(owner: string, spender: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        approve(spender: string, amount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        approveCoupons(spender: string, amount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        approveFor(candidate: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        balanceOf(account: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        balanceOfBonded(account: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        balanceOfCoupons(account: string, epoch: BigNumberish, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        balanceOfStaged(account: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        bond(value: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        bootstrappingAt(epoch: BigNumberish, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        calculatePrice(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        calculateReward(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        commit(candidate: string, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        couponPremium(amount: BigNumberish, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        couponsExpiration(epoch: BigNumberish, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        decimals(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        deposit(value: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        dollar(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        emergencyCommit(candidate: string, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        epoch(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        epochTime(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        expiringCoupons(epoch: BigNumberish, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        expiringCouponsAtIndex(epoch: BigNumberish, i: BigNumberish, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        fluidUntil(account: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        implementation(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        initialize(overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        isInitialized(candidate: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        isNominated(candidate: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        lockedUntil(account: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        oracle(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        outstandingCoupons(epoch: BigNumberish, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        periodFor(candidate: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        pool(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        purchaseCoupons(dollarAmount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        recordedVote(account: string, candidate: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        redeemCoupons(couponEpoch: BigNumberish, couponAmount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        rejectFor(candidate: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        startFor(candidate: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        statusOf(account: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        totalBonded(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        totalBondedAt(epoch: BigNumberish, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        totalCoupons(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        totalDebt(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        totalNet(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        totalRedeemable(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        totalStaged(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        transfer(recipient: string, amount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        transferCoupons(sender: string, recipient: string, epoch: BigNumberish, amount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        transferFrom(sender: string, recipient: string, amount: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        unbond(value: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        unbondUnderlying(value: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        vote(candidate: string, vote: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
-        votesFor(candidate: string, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        withdraw(value: BigNumberish, overrides?: Overrides & {
-            from?: string | Promise<string>;
-        }): Promise<PopulatedTransaction>;
+        "Advance(uint256,uint256,uint256)": TypedContractEvent<AdvanceEvent.InputTuple, AdvanceEvent.OutputTuple, AdvanceEvent.OutputObject>;
+        Advance: TypedContractEvent<AdvanceEvent.InputTuple, AdvanceEvent.OutputTuple, AdvanceEvent.OutputObject>;
+        "Bond(address,uint256,uint256,uint256)": TypedContractEvent<BondEvent.InputTuple, BondEvent.OutputTuple, BondEvent.OutputObject>;
+        Bond: TypedContractEvent<BondEvent.InputTuple, BondEvent.OutputTuple, BondEvent.OutputObject>;
+        "Commit(address,address)": TypedContractEvent<CommitEvent.InputTuple, CommitEvent.OutputTuple, CommitEvent.OutputObject>;
+        Commit: TypedContractEvent<CommitEvent.InputTuple, CommitEvent.OutputTuple, CommitEvent.OutputObject>;
+        "CouponApproval(address,address,uint256)": TypedContractEvent<CouponApprovalEvent.InputTuple, CouponApprovalEvent.OutputTuple, CouponApprovalEvent.OutputObject>;
+        CouponApproval: TypedContractEvent<CouponApprovalEvent.InputTuple, CouponApprovalEvent.OutputTuple, CouponApprovalEvent.OutputObject>;
+        "CouponExpiration(uint256,uint256,uint256,uint256,uint256)": TypedContractEvent<CouponExpirationEvent.InputTuple, CouponExpirationEvent.OutputTuple, CouponExpirationEvent.OutputObject>;
+        CouponExpiration: TypedContractEvent<CouponExpirationEvent.InputTuple, CouponExpirationEvent.OutputTuple, CouponExpirationEvent.OutputObject>;
+        "CouponPurchase(address,uint256,uint256,uint256)": TypedContractEvent<CouponPurchaseEvent.InputTuple, CouponPurchaseEvent.OutputTuple, CouponPurchaseEvent.OutputObject>;
+        CouponPurchase: TypedContractEvent<CouponPurchaseEvent.InputTuple, CouponPurchaseEvent.OutputTuple, CouponPurchaseEvent.OutputObject>;
+        "CouponRedemption(address,uint256,uint256)": TypedContractEvent<CouponRedemptionEvent.InputTuple, CouponRedemptionEvent.OutputTuple, CouponRedemptionEvent.OutputObject>;
+        CouponRedemption: TypedContractEvent<CouponRedemptionEvent.InputTuple, CouponRedemptionEvent.OutputTuple, CouponRedemptionEvent.OutputObject>;
+        "CouponTransfer(address,address,uint256,uint256)": TypedContractEvent<CouponTransferEvent.InputTuple, CouponTransferEvent.OutputTuple, CouponTransferEvent.OutputObject>;
+        CouponTransfer: TypedContractEvent<CouponTransferEvent.InputTuple, CouponTransferEvent.OutputTuple, CouponTransferEvent.OutputObject>;
+        "Deposit(address,uint256)": TypedContractEvent<DepositEvent.InputTuple, DepositEvent.OutputTuple, DepositEvent.OutputObject>;
+        Deposit: TypedContractEvent<DepositEvent.InputTuple, DepositEvent.OutputTuple, DepositEvent.OutputObject>;
+        "Incentivization(address,uint256)": TypedContractEvent<IncentivizationEvent.InputTuple, IncentivizationEvent.OutputTuple, IncentivizationEvent.OutputObject>;
+        Incentivization: TypedContractEvent<IncentivizationEvent.InputTuple, IncentivizationEvent.OutputTuple, IncentivizationEvent.OutputObject>;
+        "Proposal(address,address,uint256,uint256)": TypedContractEvent<ProposalEvent.InputTuple, ProposalEvent.OutputTuple, ProposalEvent.OutputObject>;
+        Proposal: TypedContractEvent<ProposalEvent.InputTuple, ProposalEvent.OutputTuple, ProposalEvent.OutputObject>;
+        "SupplyDecrease(uint256,uint256,uint256)": TypedContractEvent<SupplyDecreaseEvent.InputTuple, SupplyDecreaseEvent.OutputTuple, SupplyDecreaseEvent.OutputObject>;
+        SupplyDecrease: TypedContractEvent<SupplyDecreaseEvent.InputTuple, SupplyDecreaseEvent.OutputTuple, SupplyDecreaseEvent.OutputObject>;
+        "SupplyIncrease(uint256,uint256,uint256,uint256,uint256)": TypedContractEvent<SupplyIncreaseEvent.InputTuple, SupplyIncreaseEvent.OutputTuple, SupplyIncreaseEvent.OutputObject>;
+        SupplyIncrease: TypedContractEvent<SupplyIncreaseEvent.InputTuple, SupplyIncreaseEvent.OutputTuple, SupplyIncreaseEvent.OutputObject>;
+        "SupplyNeutral(uint256)": TypedContractEvent<SupplyNeutralEvent.InputTuple, SupplyNeutralEvent.OutputTuple, SupplyNeutralEvent.OutputObject>;
+        SupplyNeutral: TypedContractEvent<SupplyNeutralEvent.InputTuple, SupplyNeutralEvent.OutputTuple, SupplyNeutralEvent.OutputObject>;
+        "Transfer(address,address,uint256)": TypedContractEvent<TransferEvent.InputTuple, TransferEvent.OutputTuple, TransferEvent.OutputObject>;
+        Transfer: TypedContractEvent<TransferEvent.InputTuple, TransferEvent.OutputTuple, TransferEvent.OutputObject>;
+        "Unbond(address,uint256,uint256,uint256)": TypedContractEvent<UnbondEvent.InputTuple, UnbondEvent.OutputTuple, UnbondEvent.OutputObject>;
+        Unbond: TypedContractEvent<UnbondEvent.InputTuple, UnbondEvent.OutputTuple, UnbondEvent.OutputObject>;
+        "Upgraded(address)": TypedContractEvent<UpgradedEvent.InputTuple, UpgradedEvent.OutputTuple, UpgradedEvent.OutputObject>;
+        Upgraded: TypedContractEvent<UpgradedEvent.InputTuple, UpgradedEvent.OutputTuple, UpgradedEvent.OutputObject>;
+        "Vote(address,address,uint8,uint256)": TypedContractEvent<VoteEvent.InputTuple, VoteEvent.OutputTuple, VoteEvent.OutputObject>;
+        Vote: TypedContractEvent<VoteEvent.InputTuple, VoteEvent.OutputTuple, VoteEvent.OutputObject>;
+        "Withdraw(address,uint256)": TypedContractEvent<WithdrawEvent.InputTuple, WithdrawEvent.OutputTuple, WithdrawEvent.OutputObject>;
+        Withdraw: TypedContractEvent<WithdrawEvent.InputTuple, WithdrawEvent.OutputTuple, WithdrawEvent.OutputObject>;
     };
 }
