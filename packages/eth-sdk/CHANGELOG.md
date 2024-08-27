@@ -1,5 +1,11 @@
 # @gnosis-guild/eth-sdk
 
+## 0.3.5
+
+### Patch Changes
+
+- c788e96: fix: upgrade to fixed version of typechain-ethers-v6
+
 ## 0.3.4
 
 ### Patch Changes
