@@ -39,7 +39,7 @@ describe('config types', () => {
       for (const invalid of invalidValues) {
         const input: EthSdkConfigInput = {
           contracts: {
-            optimismKovan: {
+            sepolia: {
               valid: '0x0000000000000000000000000000000000000000',
               // @ts-expect-error
               invalid,
@@ -90,4 +90,4 @@ describe('config types', () => {
 
 const INVALID_ADDRESS_EXPECTED_ERROR_MESSAGE = new RegExp(`\
 Failed to parse eth-sdk config:
-(invalid_string|too_small|too_big) at "contracts.optimismKovan.invalid": An address must be 42 characters hexadecimal number string.`)
+(invalid_string|too_small|too_big) at "contracts.sepolia.invalid": An address must be 42 characters hexadecimal number string.`)

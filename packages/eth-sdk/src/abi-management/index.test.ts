@@ -32,7 +32,7 @@ describe(gatherABIs.name, () => {
     ]
     const getAbi = mockFn((async () => abi) as GetAbi)
     const contracts = {
-      kovan: {
+      sepolia: {
         dai: parseAddress('0x6B175474E89094C44Da98b954EedeAC495271d0F'),
       },
     }
@@ -49,15 +49,15 @@ describe(gatherABIs.name, () => {
 
     await gatherABIs(ctx, getAbi, (): RpcProvider => rpcProvider)
 
-    expect(fs.test.isDirectory('workdirPath/abis/kovan')).toEqual(true)
-    expect(fs.test.readJson('workdirPath/abis/kovan/dai.json')).toEqual(abi)
-    expect(getAbi).toHaveBeenCalledWith(['kovan', contracts.kovan.dai])
+    expect(fs.test.isDirectory('workdirPath/abis/sepolia')).toEqual(true)
+    expect(fs.test.readJson('workdirPath/abis/sepolia/dai.json')).toEqual(abi)
+    expect(getAbi).toHaveBeenCalledWith(['sepolia', contracts.sepolia.dai])
   })
 
   it('uses implementation abi instead of proxy abi', async () => {
     const implementationAddr = randomAddress('0x111')
     const contracts = {
-      goerli: {
+      sepolia: {
         proxy: randomAddress('0x222'),
       },
     }
@@ -76,7 +76,7 @@ describe(gatherABIs.name, () => {
     })
     const getAbi = mockFn((async (_net, addr) => {
       return {
-        [contracts.goerli.proxy]: abis.proxy,
+        [contracts.sepolia.proxy]: abis.proxy,
         [implementationAddr]: abis.implementation,
       }[addr]
     }) as GetAbi)
@@ -88,8 +88,8 @@ describe(gatherABIs.name, () => {
 
     await gatherABIs(ctx, getAbi, getProvider)
 
-    expect(fs.test.readJson('workdirPath/abis/goerli/proxy.json')).toEqual(abis.implementation)
-    expect(getProvider).toHaveBeenCalledWith([expect.anything(), 'goerli'])
+    expect(fs.test.readJson('workdirPath/abis/sepolia/proxy.json')).toEqual(abis.implementation)
+    expect(getProvider).toHaveBeenCalledWith([expect.anything(), 'sepolia'])
   })
 
   it('does not call any rpc provider method when config.noFollowProxies is true', async () => {
@@ -105,7 +105,7 @@ describe(gatherABIs.name, () => {
       cliArgs: { workingDirPath: 'workdirPath' },
       config: createEthSdkConfig({
         contracts: {
-          kovan: {
+          sepolia: {
             dai: parseAddress('0x6B175474E89094C44Da98b954EedeAC495271d0F'),
           },
         },
@@ -116,7 +116,7 @@ describe(gatherABIs.name, () => {
 
     await gatherABIs(ctx, getAbi, (): RpcProvider => rpcProvider)
 
-    expect(fs.test.readJson('workdirPath/abis/kovan/dai.json')).toEqual([])
+    expect(fs.test.readJson('workdirPath/abis/sepolia/dai.json')).toEqual([])
   })
 
   it('logs warning when rpc provider is not found', async () => {
@@ -128,7 +128,7 @@ describe(gatherABIs.name, () => {
       cliArgs: { workingDirPath: 'workdirPath' },
       config: createEthSdkConfig({
         contracts: {
-          kovan: {
+          sepolia: {
             dai: parseAddress('0x6B175474E89094C44Da98b954EedeAC495271d0F'),
           },
         },
@@ -141,7 +141,7 @@ describe(gatherABIs.name, () => {
     await gatherABIs(ctx, async () => [], getProvider)
 
     expect(mockWarn).toHaveBeenCalledWith([
-      expect.stringMatching(`Please add it to "config.rpc.kovan" to enable fetching proxy implementation ABIs`),
+      expect.stringMatching(`Please add it to "config.rpc.sepolia" to enable fetching proxy implementation ABIs`),
     ])
 
     console.warn = _consoleWarn

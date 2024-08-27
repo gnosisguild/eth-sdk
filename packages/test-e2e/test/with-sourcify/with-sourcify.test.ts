@@ -4,7 +4,7 @@ import { env } from '../e2e-utils'
 import { getNotRopstenAtAllSdk } from './outDir'
 
 describe('with ABIs from Sourcify', () => {
-  const provider = new JsonRpcProvider(env.ROPSTEN_RPC)
+  const provider = new JsonRpcProvider(env.SEPOLIA_RPC)
   const sdk = getNotRopstenAtAllSdk(provider)
 
   // skipping because infura doesnt support ropsten anymore

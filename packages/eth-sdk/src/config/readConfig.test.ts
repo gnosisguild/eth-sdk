@@ -62,7 +62,7 @@ describe('readConfig', () => {
       filePath,
       mockRequire(filePath, {
         contracts: {
-          kovan: { mkr: '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2' },
+          sepolia: { mkr: '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2' },
         },
         outputPath: './eth-sdk/client',
         abiSource: 'sourcify',
@@ -71,7 +71,7 @@ describe('readConfig', () => {
 
     expect(actual).toEqual({
       contracts: {
-        kovan: {
+        sepolia: {
           mkr: parseAddress('0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2'),
         },
       },

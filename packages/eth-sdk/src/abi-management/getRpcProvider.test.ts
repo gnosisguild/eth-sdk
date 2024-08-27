@@ -18,12 +18,12 @@ describe(getRpcProvider.name, () => {
   it('uses the RPC url from config', () => {
     const cfg: EthSdkConfig = {
       ...config,
-      rpc: { kovan: 'https://kovan.test', polygonMumbai: 'https://polygonMumbai.test' },
+      rpc: { sepolia: 'https://sepolia.test', polygonMumbai: 'https://polygonMumbai.test' },
     }
 
-    let provider = getRpcProvider(cfg, 'kovan') as JsonRpcProvider
+    let provider = getRpcProvider(cfg, 'sepolia') as JsonRpcProvider
 
-    expect(provider._getConnection().url).toEqual('https://kovan.test')
+    expect(provider._getConnection().url).toEqual('https://sepolia.test')
 
     provider = getRpcProvider(cfg, 'polygonMumbai') as JsonRpcProvider
 

@@ -57,7 +57,7 @@ export function isUserProvidedNetwork(
   return !!(symbol in userNetworks && userNetworks[symbol as keyof typeof userNetworks])
 }
 
-export type PredefinedNetworkSymbol = typeof networkIDtoSymbol[keyof typeof networkIDtoSymbol]
+export type PredefinedNetworkSymbol = (typeof networkIDtoSymbol)[keyof typeof networkIDtoSymbol]
 
 export type NetworkSymbol = UserProvidedNetworkSymbol | PredefinedNetworkSymbol
 
