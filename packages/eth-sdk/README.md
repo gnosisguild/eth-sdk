@@ -168,12 +168,11 @@ A map from network identifier into deeply nested key-value pairs of contract nam
 Predefined network identifiers are:
 
 ```
-"mainnet"            "ropsten"            "rinkeby"
-"goerli"             "kovan"              "bsc"
-"bscTestnet"
-"opera"              "ftmTestnet"         "optimism"
-"optimismKovan"      "polygon"            "polygonMumbai"
-"arbitrumOne"        "arbitrumTestnet"    "sepolia"
+"mainnet"            "holesky"            "sepolia"
+"gnosis"             "optimism"           "arbitrumOne"
+"base"               "avalanche"          "bsc"
+"bscTestnet"         "opera"              "ftmTestnet"
+"polygon"            "polygonMumbai"
 ```
 
 You can use other networks, but you will need to configure Etherscan URLs for them in [`etherscanURLs`](#etherscanurls)
@@ -230,8 +229,7 @@ Configuration for Ethereum JSON-RPC provider needed for _following proxies_.
 ```json
 {
   "rpc": {
-    "mainnet": "https://mainnet.infura.io/v3/00000000000000000000000000000000",
-    "kovan": "https://kovan.infura.io/v3/00000000000000000000000000000000"
+    "mainnet": "https://mainnet.infura.io/v3/00000000000000000000000000000000"
   }
 }
 ```

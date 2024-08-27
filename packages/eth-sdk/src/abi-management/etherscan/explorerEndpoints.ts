@@ -8,6 +8,8 @@ const FTMSCAN_KEY = 'EH9NPZVF1HMNAQMAUZKA4VF7EC23X37DGS'
 const SNOWTRACE_KEY = 'IQEHAJ43W674REN5XV79WF47X37VEB8PIC'
 const ARBISCAN_KEY = 'X3ZWJBXC14HTIR3B9DNYGEUICEIKKZ9ENZ'
 const POLYGONSCAN_KEY = 'RV4YXDXEMIHXMC7ZXB8T82G4F56FRZ1SZQ'
+const GNOSISSCAN_KEY = 'Q4CSKMKKXXJQ4J4CZRXZU4I6TQI1HTFQSQ'
+const BASESCAN_KEY = 'PHG4SEMHX126PPA4NYYMTG95F64MN8WSHB'
 
 /**
  * Refer to the following file to add new predefined networks:
@@ -18,41 +20,29 @@ export const predefinedExplorerEndpoints: PredefinedExplorerEndpoints = {
     url: 'https://api.etherscan.io/api',
     apiKey: ETHERSCAN_KEY,
   },
-  ropsten: {
-    url: 'https://api-ropsten.etherscan.io/api',
-    apiKey: ETHERSCAN_KEY,
-  },
-  rinkeby: {
-    url: 'https://api-rinkeby.etherscan.io/api',
-    apiKey: ETHERSCAN_KEY,
-  },
-  goerli: {
-    url: 'https://api-goerli.etherscan.io/api',
+  holesky: {
+    url: 'https://api-holesky.etherscan.io/api',
     apiKey: ETHERSCAN_KEY,
   },
   sepolia: {
     url: 'https://api-sepolia.etherscan.io/api',
     apiKey: ETHERSCAN_KEY,
   },
-  kovan: {
-    url: 'https://api-kovan.etherscan.io/api',
-    apiKey: ETHERSCAN_KEY,
+  gnosis: {
+    url: 'https://api.gnosisscan.io/api',
+    apiKey: GNOSISSCAN_KEY,
   },
   optimism: {
     url: 'https://api-optimistic.etherscan.io/api',
-    apiKey: OPTIMISM_KEY,
-  },
-  optimismKovan: {
-    url: 'https://api-kovan-optimistic.etherscan.io/api',
     apiKey: OPTIMISM_KEY,
   },
   arbitrumOne: {
     url: 'https://api.arbiscan.io/api',
     apiKey: ARBISCAN_KEY,
   },
-  arbitrumTestnet: {
-    url: 'https://api-testnet.arbiscan.io/api',
-    apiKey: ARBISCAN_KEY,
+  base: {
+    url: 'https://api.basescan.org/api',
+    apiKey: BASESCAN_KEY,
   },
   bsc: {
     url: 'https://api.bscscan.com/api',
