@@ -1,1 +1,1 @@
-export type * from '.dethcrypto/eth-sdk-client/types'
+export type * from '.gnosisguild/eth-sdk-client/types'

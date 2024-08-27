@@ -1,4 +1,4 @@
-# @dethcrypto/eth-sdk
+# @gnosis-guild/eth-sdk
 
 ## 0.3.4
 
@@ -95,7 +95,7 @@
      `.ts`, `.cjs` and `.json`.
 
   ```ts
-  import { defineConfig } from '@dethcrypto/eth-sdk'
+  import { defineConfig } from '@gnosis-guild/eth-sdk'
 
   export default defineConfig({
     contracts: {

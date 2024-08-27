@@ -1,5 +1,5 @@
 {
-  "name": ".dethcrypto/eth-sdk-client",
+  "name": ".gnosisguild/eth-sdk-client",
   "main": "index.cjs",
   "module": "index.mjs",
   "types": "index.d.ts"

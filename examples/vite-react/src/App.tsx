@@ -1,6 +1,6 @@
 import './App.css'
 
-import { getMainnetSdk } from '@dethcrypto/eth-sdk-client'
+import { getMainnetSdk } from '@gnosis-guild/eth-sdk-client'
 import { ethers } from 'ethers'
 import { Suspense, useState } from 'react'
 import { useQuery } from 'react-query'

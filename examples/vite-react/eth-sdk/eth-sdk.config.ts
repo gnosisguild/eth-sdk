@@ -1,4 +1,4 @@
-import type { EthSdkConfig } from '@dethcrypto/eth-sdk'
+import type { EthSdkConfig } from '@gnosis-guild/eth-sdk'
 
 const config: EthSdkConfig = {
   contracts: {

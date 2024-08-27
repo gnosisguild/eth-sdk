@@ -1,5 +1,5 @@
 // @ts-check
-/** @type {import("@dethcrypto/eth-sdk").EthSdkConfig} */
+/** @type {import("@gnosis-guild/eth-sdk").EthSdkConfig} */
 const config = {
   contracts: {
     mainnet: {

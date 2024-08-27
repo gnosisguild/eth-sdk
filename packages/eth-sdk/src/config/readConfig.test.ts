@@ -14,7 +14,7 @@ const contractsFixture: EthSdkContracts = {
 
 const configFixture: EthSdkConfig = {
   contracts: contractsFixture,
-  outputPath: './node_modules/.dethcrypto/eth-sdk-client',
+  outputPath: './node_modules/.gnosisguild/eth-sdk-client',
   etherscanKey: 'CONFIG_ETHERSCAN_KEY',
   etherscanKeys: {},
   etherscanURLs: {},

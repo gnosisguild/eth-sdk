@@ -1,4 +1,4 @@
-# @dethcrypto/eth-sdk-client
+# @gnosis-guild/eth-sdk-client
 
 ## 0.1.6
 

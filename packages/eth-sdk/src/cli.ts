@@ -13,7 +13,7 @@ import { formatError } from './peripherals/formatError'
 import { realFs } from './peripherals/fs'
 import { EthSdkCtx } from './types'
 
-const d = debug('@dethcrypto/eth-sdk:cli')
+const d = debug('@gnosis-guild/eth-sdk:cli')
 
 export async function main() {
   const cwd = process.cwd()

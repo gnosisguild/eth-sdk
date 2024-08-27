@@ -36,7 +36,7 @@ function panicOnDeprecatedArgs(argv: string[]) {
         `The "${cliArg}" argument is deprecated.\n` +
           `Please set "outputPath" property in your config file instead.\n` +
           'Learn more about migration to eth-sdk 0.2 at\n' +
-          'https://github.com/dethcrypto/eth-sdk/releases\n',
+          'https://github.com/gnosisguild/eth-sdk/releases\n',
       )
     }
   }

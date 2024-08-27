@@ -5,12 +5,12 @@
   <p align="center">The quickest and easiest way to interact with Ethereum</p>
 </p>
 
-## [eth-sdk main readme](https://github.com/dethcrypto/eth-sdk)
+## [eth-sdk main readme](https://github.com/gnosisguild/eth-sdk)
 
 ## Installation
 
 ```
-yarn add --dev @dethcrypto/eth-sdk-client
+yarn add --dev @gnosis-guild/eth-sdk-client
 ```
 
 ## Why?

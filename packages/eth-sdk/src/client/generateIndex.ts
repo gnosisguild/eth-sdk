@@ -9,7 +9,7 @@ import { EthSdkContracts, NestedAddresses } from '../config/types'
 import { Fs, realFs } from '../peripherals/fs'
 import { unsafeKeys } from '../utils/unsafeKeys'
 
-const d = debug('@dethcrypto/eth-sdk:client')
+const d = debug('@gnosis-guild/eth-sdk:client')
 
 export async function generateIndex(
   contracts: EthSdkContracts,

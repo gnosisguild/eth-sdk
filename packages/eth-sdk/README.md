@@ -1,13 +1,8 @@
 <p align="center">
-  <img src="https://github.com/dethcrypto/eth-sdk/blob/master/docs/logo.png?raw=true" width="100" alt="" role="presentation">
+  <img src="https://github.com/gnosisguild/eth-sdk/blob/master/docs/logo.png?raw=true" width="100" alt="" role="presentation">
   <h3 align="center">eth-sdk</h3>
   <p align="center">Generate type-safe, lightweight SDK for your Ethereum smart contracts</p>
   <p align="center">The quickest and easiest way to interact with Ethereum</p>
-  <p align="center">
-    <a href="https://github.com/ethereum-ts/eth-sdk/actions"><img alt="Build Status" src="https://github.com/ethereum-ts/eth-sdk/workflows/CI/badge.svg"></a>
-    <a href="/package.json"><img alt="Software License" src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"></a>
-    <a href="https://discord.gg/wQDkeDgzgv"><img alt="Join our discord!" src="https://img.shields.io/discord/895381864922091630.svg?color=7289da&label=deth&logo=discord&style=flat-square"></a>
-  </p>
 </p>
 
 <h2>Features ⚡</h2>
@@ -16,6 +11,16 @@
 - easy to use - ABIs will be automatically downloaded from Etherscan
 - familiar API - Generates ethers.js contract wrappers
 - type-safe - Leverages TypeChain for maximum type-safety
+
+## Fork notice
+
+This is a community fork of [@dethcrypto/eth-sdk](https://github.com/dethcrypto/eth-sdk) for making it ethers v6 compatible.
+
+eth-sdk has been created and maintained by deth (@dethcrypto). 
+
+### License
+
+deth (@dethcrypto) MIT
 
 ---
 
@@ -41,10 +46,10 @@
 # Installation
 
 ```
-yarn add --dev @dethcrypto/eth-sdk @dethcrypto/eth-sdk-client
+yarn add --dev @gnosis-guild/eth-sdk @gnosis-guild/eth-sdk-client
 ```
 
-`eth-sdk` uses ethers.js and TypeScript, so these dependencies have to be installed as well.
+`eth-sdk` uses ethers v6 and TypeScript, so these dependencies have to be installed as well.
 
 # Usage
 
@@ -70,7 +75,7 @@ The first step is to create a config file specifying contracts that we wish to i
 is `eth-sdk/config.ts`.
 
 ```ts
-import { defineConfig } from '@dethcrypto/eth-sdk'
+import { defineConfig } from '@gnosis-guild/eth-sdk'
 
 export default defineConfig({
   contracts: {
@@ -91,12 +96,12 @@ Now you're ready to run `yarn eth-sdk`. Few things will happen under the hood:
 2. Minimal SDK will be generated with functions like `getMainnetSdk` exposed. These functions wire addresses with ABIs
    and create ethers.js contract instances.
 3. TypeScript types will be generated for SDK using TypeChain.
-4. SDK is generated directly into `node_modules`, access it as `@dethcrypto/eth-sdk-client`.
+4. SDK is generated directly into `node_modules`, access it as `@gnosis-guild/eth-sdk-client`.
 
 Using generated sdk is as simple as it gets:
 
 ```typescript
-import { getMainnetSdk } from '@dethcrypto/eth-sdk-client' // yay, our SDK! It's tailored especially for our needs
+import { getMainnetSdk } from '@gnosis-guild/eth-sdk-client' // yay, our SDK! It's tailored especially for our needs
 import { ethers } from 'ethers'
 
 async function main() {
@@ -122,11 +127,11 @@ main()
 `eth-sdk` looks for a file named `config` or `eth-sdk.config` with `.ts`, `.json`, `.js` or `.cjs` extension inside of
 the directory specified by `--path` CLI argument.
 
-You can use exports from `@dethcrypto/eth-sdk` to leverage your IDE's intellisense. Exported types are `EthSdkConfig`,
+You can use exports from `@gnosis-guild/eth-sdk` to leverage your IDE's intellisense. Exported types are `EthSdkConfig`,
 `EthSdkContracts`, `NestedAddresses` and `Address`.
 
 ```ts
-import type { EthSdkConfig } from '@dethcrypto/eth-sdk'
+import type { EthSdkConfig } from '@gnosis-guild/eth-sdk'
 const config: EthSdkConfig = {
   // ...
 }
@@ -136,7 +141,7 @@ export default config
 Alternatively, you can use `defineConfig` function to write your config in a typesafe way without need for annotations.
 
 ```ts
-import { defineConfig } from '@dethcrypto/eth-sdk'
+import { defineConfig } from '@gnosis-guild/eth-sdk'
 export default defineConfig({
   // ...
 })
@@ -177,11 +182,11 @@ or provide [`networkIds`](#networkids) when using Sourcify as `abiSource`.
 
 Output directory for generated SDK.
 
-**Defaults to `./node_modules/.dethcrypto/eth-sdk`**
+**Defaults to `./node_modules/.gnosisguild/eth-sdk`**
 
 ```json
 {
-  "outputPath": "./node_modules/.dethcrypto/eth-sdk"
+  "outputPath": "./node_modules/.gnosisguild/eth-sdk"
 }
 ```
 
@@ -274,10 +279,10 @@ won't need to provide them. You can find the list of all predefined networks in 
 
 Check out examples of using `eth-sdk` in [`/examples`][examples] directory.
 
-- [Hardhat example](https://github.com/dethcrypto/eth-sdk/tree/master/examples/hardhat)
-- [Vite + React example](https://github.com/dethcrypto/eth-sdk/tree/master/examples/vite-react)
+- [Hardhat example](https://github.com/gnosisguild/eth-sdk/tree/master/examples/hardhat)
+- [Vite + React example](https://github.com/gnosisguild/eth-sdk/tree/master/examples/vite-react)
 
-[examples]: https://github.com/dethcrypto/eth-sdk/tree/master/examples
+[examples]: https://github.com/gnosisguild/eth-sdk/tree/master/examples
 
 ## Videos
 
@@ -297,6 +302,4 @@ it's better to use TypeChain directly (especially via HardHat integration).
 
 Check out our [contributing guidelines](./CONTRIBUTING.md).
 
-# License
 
-deth (@dethcrypto) MIT

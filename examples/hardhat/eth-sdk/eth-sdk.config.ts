@@ -1,4 +1,4 @@
-import { defineConfig } from '@dethcrypto/eth-sdk'
+import { defineConfig } from '@gnosis-guild/eth-sdk'
 
 // We fork mainnet with Hardhat at block 13323323
 const mainnetRpc = `http://localhost:${process.env.HH_NODE_PORT}/`

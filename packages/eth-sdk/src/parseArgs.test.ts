@@ -6,7 +6,7 @@ describe('cli > parseArgs', () => {
   const cwd = '/root'
 
   it('throws on deprecated --out option', () => {
-    expect(() => parseArgs({ argv: ['', '', ...'-p sdk -o @dethcrypto/eth-sdk-client'.split(' ')], cwd })).toThrow(
+    expect(() => parseArgs({ argv: ['', '', ...'-p sdk -o @gnosis-guild/eth-sdk-client'.split(' ')], cwd })).toThrow(
       expect.stringMatching('The "-o" argument is deprecated'),
     )
     expect(() => parseArgs({ argv: ['', '', ...'-p sdk --out my-outdir'.split(' ')], cwd })).toThrow(

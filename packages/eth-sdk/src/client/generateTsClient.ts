@@ -6,7 +6,7 @@ import { EthSdkContracts } from '../config'
 import { Fs, realFs } from '../peripherals/fs'
 import { generateIndex } from './generateIndex'
 import { generateTypes } from './generateTypes'
-const d = debug('@dethcrypto/eth-sdk-cli:client')
+const d = debug('@gnosis-guild/eth-sdk-cli:client')
 
 export async function generateTsClient(
   contracts: EthSdkContracts,

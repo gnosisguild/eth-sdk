@@ -1,1 +1,1 @@
-export * from '.dethcrypto/eth-sdk-client'
+export * from '.gnosisguild/eth-sdk-client'

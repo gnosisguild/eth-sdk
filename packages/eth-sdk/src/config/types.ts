@@ -12,7 +12,7 @@ import { NestedDict } from '../utils/utility-types'
 
 export type { UserEtherscanURLs, UserEtherscanURLsInput }
 
-const DEFAULT_OUTPUT_PATH = './node_modules/.dethcrypto/eth-sdk-client'
+const DEFAULT_OUTPUT_PATH = './node_modules/.gnosisguild/eth-sdk-client'
 const DEFAULT_ABI_SOURCE: AbiSource = 'etherscan'
 
 export type AddressInput = `0x${string}`

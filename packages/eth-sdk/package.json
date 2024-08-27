@@ -1,11 +1,11 @@
 {
-  "name": "@dethcrypto/eth-sdk",
+  "name": "@gnosis-guild/eth-sdk",
   "version": "0.3.4",
   "license": "MIT",
   "description": "🛠 Generate type-safe, lightweight SDK for your Ethereum smart contracts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dethcrypto/eth-sdk",
+    "url": "https://github.com/gnosisguild/eth-sdk",
     "directory": "packages/eth-sdk"
   },
   "keywords": [

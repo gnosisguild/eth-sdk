@@ -13,7 +13,7 @@ import { GetAbi } from './types'
 
 export type { GetAbi }
 
-export const d = debug('@dethcrypto/eth-sdk:abi')
+export const d = debug('@gnosis-guild/eth-sdk:abi')
 
 export async function gatherABIs(
   { config, fs, cliArgs }: EthSdkCtx,

@@ -1,5 +1,5 @@
 {
-  "name": "@dethcrypto/hardhat-script-example",
+  "name": "@gnosis-guild/hardhat-script-example",
   "private": true,
   "license": "MIT",
   "type": "commonjs",
@@ -15,8 +15,8 @@
     "test:fix": "yarn lint:fix && yarn format:fix && yarn test && yarn typecheck"
   },
   "devDependencies": {
-    "@dethcrypto/eth-sdk": "file:../../packages/eth-sdk",
-    "@dethcrypto/eth-sdk-client": "file:../../packages/client",
+    "@gnosis-guild/eth-sdk": "file:../../packages/eth-sdk",
+    "@gnosis-guild/eth-sdk-client": "file:../../packages/client",
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@types/wait-on": "^5.3.1",
     "cross-spawn-with-kill": "^1.0.0",
