@@ -310,10 +310,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@gnosis-guild/typechain-ethers-v6@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@gnosis-guild/typechain-ethers-v6/-/typechain-ethers-v6-0.5.2.tgz#83226617337036d633c91dd86d41e9d4727bad8b"
-  integrity sha512-hvEClHpp6/a4t3L3wWBvwg0fj1QcxCeHWQO54bZ+70VUKdu+ngEPAJq6c8Cb2xqailQPzI2McVRwb43q6RtvCg==
+"@gnosis-guild/typechain-ethers-v6@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@gnosis-guild/typechain-ethers-v6/-/typechain-ethers-v6-0.5.3.tgz#35621be565e7c93487a869062f05edbc16846b78"
+  integrity sha512-Et6z/n7jdgIKkVRXo57hTwzTsRDSqqEPakkFvMbsvxMfCXu0eop9af78b0fSkQFGnFff2ttyxlnu8PkFJSzv3w==
   dependencies:
     lodash "^4.17.15"
     ts-essentials "^7.0.1"
