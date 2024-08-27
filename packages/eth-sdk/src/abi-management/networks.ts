@@ -8,23 +8,12 @@ export enum NetworkID {
   SEPOLIA = 11155111,
   GNOSIS = 100,
   BASE = 8453,
-  // Binance Smart Chain
   BSC = 56,
-  BSC_TESTNET = 97,
-  // Fantom mainnet
-  OPERA = 250,
-  FTM_TESTNET = 4002,
-  // Optimism
   OPTIMISTIC_ETHEREUM = 10,
-  // Polygon
   POLYGON = 137,
-  POLYGON_MUMBAI = 80001,
-  // Arbitrum
   ARBITRUM_ONE = 42161,
-  ARBITRUM_TESTNET = 421611,
-  // Avalanche
   AVALANCHE = 43114,
-  AVALANCHE_FUJI_TESTNET = 43113,
+  CELO = 42220,
 }
 
 export const networkIDtoSymbol = {
@@ -34,15 +23,11 @@ export const networkIDtoSymbol = {
   [NetworkID.GNOSIS]: 'gnosis',
   [NetworkID.BASE]: 'base',
   [NetworkID.BSC]: 'bsc',
-  [NetworkID.BSC_TESTNET]: 'bscTestnet',
-  [NetworkID.OPERA]: 'opera',
-  [NetworkID.FTM_TESTNET]: 'ftmTestnet',
   [NetworkID.OPTIMISTIC_ETHEREUM]: 'optimism',
   [NetworkID.POLYGON]: 'polygon',
-  [NetworkID.POLYGON_MUMBAI]: 'polygonMumbai',
   [NetworkID.ARBITRUM_ONE]: 'arbitrumOne',
   [NetworkID.AVALANCHE]: 'avalanche',
-  [NetworkID.AVALANCHE_FUJI_TESTNET]: 'fuji',
+  [NetworkID.CELO]: 'celo',
 } as const
 
 export type UserProvidedNetworkSymbol = Opaque<string, 'UserProvidedNetworkSymbol'>

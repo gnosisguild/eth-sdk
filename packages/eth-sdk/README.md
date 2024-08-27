@@ -171,8 +171,7 @@ Predefined network identifiers are:
 "mainnet"            "holesky"            "sepolia"
 "gnosis"             "optimism"           "arbitrumOne"
 "base"               "avalanche"          "bsc"
-"bscTestnet"         "opera"              "ftmTestnet"
-"polygon"            "polygonMumbai"
+"polygon"            "celo"
 ```
 
 You can use other networks, but you will need to configure Etherscan URLs for them in [`etherscanURLs`](#etherscanurls)

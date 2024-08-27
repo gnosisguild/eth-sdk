@@ -1,80 +1,53 @@
 import type { URLString } from '../../utils/utility-types'
-import { NetworkSymbol, PredefinedNetworkSymbol, UserProvidedNetworkSymbol } from '../networks'
+import { NetworkID, NetworkSymbol, PredefinedNetworkSymbol, UserProvidedNetworkSymbol } from '../networks'
 
-const ETHERSCAN_KEY = 'WW2B6KB1FAXNTWP8EJQJYFTK1CMG1W4DWZ'
-const OPTIMISM_KEY = 'UF822UT1YY28J5EHFFIKI5SPN8752AC7VV'
-const BSCSCAN_KEY = 'HFUM7BBA5MRUQCN5UMEQPUZBUPPRHIQT3Y'
-const FTMSCAN_KEY = 'EH9NPZVF1HMNAQMAUZKA4VF7EC23X37DGS'
-const SNOWTRACE_KEY = 'IQEHAJ43W674REN5XV79WF47X37VEB8PIC'
-const ARBISCAN_KEY = 'X3ZWJBXC14HTIR3B9DNYGEUICEIKKZ9ENZ'
-const POLYGONSCAN_KEY = 'RV4YXDXEMIHXMC7ZXB8T82G4F56FRZ1SZQ'
-const GNOSISSCAN_KEY = 'Q4CSKMKKXXJQ4J4CZRXZU4I6TQI1HTFQSQ'
-const BASESCAN_KEY = 'PHG4SEMHX126PPA4NYYMTG95F64MN8WSHB'
+const makeAbiPubUrl = (networkId: NetworkID) =>
+  `https://api.abi.pub/v1/chains/${networkId}/etherscan` as `http${string}`
 
-/**
- * Refer to the following file to add new predefined networks:
- * @see https://github.com/nomiclabs/hardhat/blob/master/packages/hardhat-etherscan/src/network/prober.ts
- */
 export const predefinedExplorerEndpoints: PredefinedExplorerEndpoints = {
   mainnet: {
-    url: 'https://api.etherscan.io/api',
-    apiKey: ETHERSCAN_KEY,
+    url: makeAbiPubUrl(NetworkID.MAINNET),
+    apiKey: '',
   },
   holesky: {
-    url: 'https://api-holesky.etherscan.io/api',
-    apiKey: ETHERSCAN_KEY,
+    url: makeAbiPubUrl(NetworkID.HOLESKY),
+    apiKey: '',
   },
   sepolia: {
-    url: 'https://api-sepolia.etherscan.io/api',
-    apiKey: ETHERSCAN_KEY,
+    url: makeAbiPubUrl(NetworkID.SEPOLIA),
+    apiKey: '',
   },
   gnosis: {
-    url: 'https://api.gnosisscan.io/api',
-    apiKey: GNOSISSCAN_KEY,
+    url: makeAbiPubUrl(NetworkID.GNOSIS),
+    apiKey: '',
   },
   optimism: {
-    url: 'https://api-optimistic.etherscan.io/api',
-    apiKey: OPTIMISM_KEY,
+    url: makeAbiPubUrl(NetworkID.OPTIMISTIC_ETHEREUM),
+    apiKey: '',
   },
   arbitrumOne: {
-    url: 'https://api.arbiscan.io/api',
-    apiKey: ARBISCAN_KEY,
+    url: makeAbiPubUrl(NetworkID.ARBITRUM_ONE),
+    apiKey: '',
   },
   base: {
-    url: 'https://api.basescan.org/api',
-    apiKey: BASESCAN_KEY,
+    url: makeAbiPubUrl(NetworkID.BASE),
+    apiKey: '',
   },
   bsc: {
-    url: 'https://api.bscscan.com/api',
-    apiKey: BSCSCAN_KEY,
-  },
-  bscTestnet: {
-    url: 'https://api-testnet.bscscan.com/api',
-    apiKey: BSCSCAN_KEY,
-  },
-  opera: {
-    url: 'https://api.ftmscan.com/api',
-    apiKey: FTMSCAN_KEY,
-  },
-  ftmTestnet: {
-    url: 'https://api-testnet.ftmscan.com/api',
-    apiKey: FTMSCAN_KEY,
+    url: makeAbiPubUrl(NetworkID.BSC),
+    apiKey: '',
   },
   polygon: {
-    url: 'https://api.polygonscan.com/api',
-    apiKey: POLYGONSCAN_KEY,
-  },
-  polygonMumbai: {
-    url: 'https://api-testnet.polygonscan.com/api',
-    apiKey: POLYGONSCAN_KEY,
+    url: makeAbiPubUrl(NetworkID.POLYGON),
+    apiKey: '',
   },
   avalanche: {
-    url: 'https://api.snowtrace.io/api',
-    apiKey: SNOWTRACE_KEY,
+    url: makeAbiPubUrl(NetworkID.AVALANCHE),
+    apiKey: '',
   },
-  fuji: {
-    url: 'https://api-testnet.snowtrace.io/api',
-    apiKey: SNOWTRACE_KEY,
+  celo: {
+    url: makeAbiPubUrl(NetworkID.CELO),
+    apiKey: '',
   },
 }
 

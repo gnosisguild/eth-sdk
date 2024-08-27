@@ -20,9 +20,6 @@ export default defineConfig({
     bsc: {
       WBNB: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
     },
-    opera: {
-      chainLink: '0xb3654dc3d10ea7645f8319668e8f54d2574fbdc8',
-    },
     avalanche: {
       WAVAX: '0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7',
     },

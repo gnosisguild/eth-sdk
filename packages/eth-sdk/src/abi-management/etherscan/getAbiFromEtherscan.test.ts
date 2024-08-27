@@ -20,7 +20,7 @@ describe(getAbiFromEtherscan.name, () => {
 
     expect(actual).toEqual(RETURNED_ABI)
     expect(fetch).toHaveBeenCalledWith([
-      `https://api.etherscan.io/api?module=contract&action=getabi&address=${DAI_ADDRESS}&apikey=${apiKey}`,
+      `https://api.abi.pub/v1/chains/1/etherscan?module=contract&action=getabi&address=${DAI_ADDRESS}&apikey=${apiKey}`,
     ])
   })
 
@@ -62,13 +62,13 @@ describe(getAbiFromEtherscan.name, () => {
     await getAbiFromEtherscan('mainnet', ADDRESS_ZERO, config, fetch)
 
     expect(fetch).toHaveBeenCalledWith([
-      `https://api.etherscan.io/api?module=contract&action=getabi&address=${ADDRESS_ZERO}&apikey=one-mainnet-key`,
+      `https://api.abi.pub/v1/chains/1/etherscan?module=contract&action=getabi&address=${ADDRESS_ZERO}&apikey=one-mainnet-key`,
     ])
 
     await getAbiFromEtherscan('polygon', ADDRESS_ZERO, config, fetch)
 
     expect(fetch).toHaveBeenCalledWith([
-      `https://api.polygonscan.com/api?module=contract&action=getabi&address=${ADDRESS_ZERO}&apikey=two-polygon-key`,
+      `https://api.abi.pub/v1/chains/137/etherscan?module=contract&action=getabi&address=${ADDRESS_ZERO}&apikey=two-polygon-key`,
     ])
   })
 
@@ -80,7 +80,7 @@ describe(getAbiFromEtherscan.name, () => {
     await getAbiFromEtherscan('avalanche', ADDRESS_ZERO, config, fetch)
 
     expect(fetch).toHaveBeenCalledWith([
-      `https://api.snowtrace.io/api?module=contract&action=getabi&address=${ADDRESS_ZERO}&apikey=IQEHAJ43W674REN5XV79WF47X37VEB8PIC`,
+      `https://api.abi.pub/v1/chains/43114/etherscan?module=contract&action=getabi&address=${ADDRESS_ZERO}`,
     ])
   })
 })
