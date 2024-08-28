@@ -2,7 +2,6 @@ import fs from 'fs'
 import fsExtra from 'fs-extra'
 import glob, { IOptions as GlobOptions } from 'glob'
 import mkdirp from 'mkdirp'
-import { dir as tmpDir } from 'tmp-promise'
 import { promisify } from 'util'
 
 export interface Fs {
@@ -11,8 +10,8 @@ export interface Fs {
   ensureDir(path: string): Promise<void>
   copy(src: string, dest: string): Promise<void>
   readDir(path: string): Promise<string[]>
-  tmpDir(prefix: string): Promise<string>
   glob(pattern: string, options?: GlobOptions | undefined): Promise<string[]>
+  rmDir(path: string): void
 }
 
 export const realFs: Fs = {
@@ -23,9 +22,8 @@ export const realFs: Fs = {
   },
   copy: (src, dest) => fsExtra.copy(src, dest),
   readDir: (path) => fsExtra.readdir(path),
-  tmpDir: async (prefix) => {
-    const { path } = await tmpDir({ prefix })
-    return path
-  },
   glob: promisify(glob),
+  rmDir: (path) => {
+    fs.rmdirSync(path, { recursive: true })
+  },
 }

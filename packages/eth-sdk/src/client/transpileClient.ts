@@ -23,7 +23,7 @@ export async function transpileClient(clientPath: string, outputPath: string, fs
         rootDir: clientPath,
         resolveJsonModule: true,
         esModuleInterop: true,
-        moduleResolution: tsc.ModuleResolutionKind.NodeJs,
+        moduleResolution: tsc.ModuleResolutionKind.Node10,
       }
       const host = tsc.createCompilerHost(options)
       host.getCurrentDirectory = () => clientPath
