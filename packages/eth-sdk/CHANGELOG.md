@@ -1,5 +1,11 @@
 # @gnosis-guild/eth-sdk
 
+## 0.3.6
+
+### Patch Changes
+
+- ce2c5ac: fix: code generation for ethers v6 + typescript compilation
+
 ## 0.3.5
 
 ### Patch Changes
