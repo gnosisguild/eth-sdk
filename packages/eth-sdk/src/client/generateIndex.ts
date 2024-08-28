@@ -21,13 +21,13 @@ export async function generateIndex(
   const indexPath = join(outputPath, './index.ts')
 
   const index = `
-import { providers, Signer, Contract } from 'ethers'
+import { Provider, Signer, Contract, Interface, InterfaceAbi } from 'ethers'
 
 import * as types from './types'
 
 ${await getAbiImports(contracts, outputToAbiRelativePath)}
 
-export function getContract(address: string, abi: object, defaultSignerOrProvider: Signer | providers.Provider) {
+export function getContract(address: string, abi: Interface | InterfaceAbi, defaultSignerOrProvider: Signer | Provider): unknown {
   return new Contract(address, abi, defaultSignerOrProvider)
 }
 
@@ -63,7 +63,7 @@ function generateNetworkSdk(networkSymbol: NetworkSymbol, sdkDef: EthSdkContract
 
   return `
 export type ${network}Sdk = ReturnType<typeof get${network}Sdk>
-export function get${network}Sdk(defaultSignerOrProvider: Signer | providers.Provider) {
+export function get${network}Sdk(defaultSignerOrProvider: Signer | Provider) {
   return ${generateBody(nestedAddresses, [networkSymbol], true)}
 }
 `

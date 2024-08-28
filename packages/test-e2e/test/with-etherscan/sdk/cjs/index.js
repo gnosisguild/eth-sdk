@@ -3,7 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getMainnetSdk = exports.getContract = void 0;
+exports.getContract = getContract;
+exports.getMainnetSdk = getMainnetSdk;
 const ethers_1 = require("ethers");
 const dai_json_1 = __importDefault(require("../../eth-sdk/abis/mainnet/tokens/dai.json"));
 const mkr_json_1 = __importDefault(require("../../eth-sdk/abis/mainnet/tokens/mkr.json"));
@@ -13,7 +14,6 @@ const proxyCustomImplementation_json_1 = __importDefault(require("../../eth-sdk/
 function getContract(address, abi, defaultSignerOrProvider) {
     return new ethers_1.Contract(address, abi, defaultSignerOrProvider);
 }
-exports.getContract = getContract;
 function getMainnetSdk(defaultSignerOrProvider) {
     return {
         "tokens": {
@@ -27,4 +27,3 @@ function getMainnetSdk(defaultSignerOrProvider) {
         },
     };
 }
-exports.getMainnetSdk = getMainnetSdk;
