@@ -37,13 +37,14 @@ export function mockFilesystem(files: Record<FilePath, FileContents | DirectoryM
     async readDir(path) {
       return Object.keys(files).filter((file) => file.startsWith(normalize(path)))
     },
-    async tmpDir(prefix) {
-      const dir = `${normalize(prefix)}-${Math.random()}`
-      files[dir] = DirectoryMarker
-      return dir
-    },
     async glob(pattern, options) {
       return Object.keys(files).filter(minimatch.filter(pattern, options))
+    },
+    rmDir(path) {
+      if (files[normalize(path)] !== DirectoryMarker) {
+        throw new Error('Not a directory')
+      }
+      delete files[normalize(path)]
     },
   }
 

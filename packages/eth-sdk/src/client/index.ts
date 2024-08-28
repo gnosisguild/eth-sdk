@@ -14,12 +14,13 @@ export async function generateSdk(ctx: EthSdkCtx): Promise<void> {
 
   await fs.ensureDir(outputPath)
 
+  const tmpDirPath = join(workingDirPath, 'tmp')
+  await fs.ensureDir(tmpDirPath)
+
   await copyStaticFiles(ctx)
 
   const abisRoot = join(workingDirPath, 'abis')
   const outputToAbiRelativePath = relative(outputPath, abisRoot).replace(/\\/g, '/')
-
-  const randomTmpDir = await fs.tmpDir('eth-sdk')
 
   const shapedFlag: CodegenConfig = {
     discriminateTypes: typechainFlags?.discriminateTypes ?? false,
@@ -30,8 +31,9 @@ export async function generateSdk(ctx: EthSdkCtx): Promise<void> {
     shapedFlag.tsNocheck = typechainFlags.tsNocheck
   }
 
-  await generateTsClient(contracts, abisRoot, randomTmpDir, outputToAbiRelativePath, fs, shapedFlag)
-  await transpileClient(randomTmpDir, outputPath, fs)
+  await generateTsClient(contracts, abisRoot, tmpDirPath, outputToAbiRelativePath, fs, shapedFlag)
+  await transpileClient(tmpDirPath, outputPath, fs)
+  fs.rmDir(tmpDirPath)
 }
 
 async function copyStaticFiles({ fs, config }: EthSdkCtx) {
