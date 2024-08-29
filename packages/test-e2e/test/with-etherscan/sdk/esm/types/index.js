@@ -4,3 +4,4 @@ export { ProxyStandardStorageSlot__factory } from "./factories/mainnet/proxies/P
 export { Dai__factory } from "./factories/mainnet/tokens/Dai__factory";
 export { Mkr__factory } from "./factories/mainnet/tokens/Mkr__factory";
 export { Uniswap__factory } from "./factories/mainnet/Uniswap__factory";
+export { WithGasFields__factory } from "./factories/mainnet/WithGasFields__factory";

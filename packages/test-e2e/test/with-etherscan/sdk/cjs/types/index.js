@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Uniswap__factory = exports.Mkr__factory = exports.Dai__factory = exports.ProxyStandardStorageSlot__factory = exports.ProxyCustomImplementation__factory = exports.factories = void 0;
+exports.WithGasFields__factory = exports.Uniswap__factory = exports.Mkr__factory = exports.Dai__factory = exports.ProxyStandardStorageSlot__factory = exports.ProxyCustomImplementation__factory = exports.factories = void 0;
 exports.factories = __importStar(require("./factories"));
 var ProxyCustomImplementation__factory_1 = require("./factories/mainnet/proxies/ProxyCustomImplementation__factory");
 Object.defineProperty(exports, "ProxyCustomImplementation__factory", { enumerable: true, get: function () { return ProxyCustomImplementation__factory_1.ProxyCustomImplementation__factory; } });
@@ -35,3 +35,5 @@ var Mkr__factory_1 = require("./factories/mainnet/tokens/Mkr__factory");
 Object.defineProperty(exports, "Mkr__factory", { enumerable: true, get: function () { return Mkr__factory_1.Mkr__factory; } });
 var Uniswap__factory_1 = require("./factories/mainnet/Uniswap__factory");
 Object.defineProperty(exports, "Uniswap__factory", { enumerable: true, get: function () { return Uniswap__factory_1.Uniswap__factory; } });
+var WithGasFields__factory_1 = require("./factories/mainnet/WithGasFields__factory");
+Object.defineProperty(exports, "WithGasFields__factory", { enumerable: true, get: function () { return WithGasFields__factory_1.WithGasFields__factory; } });

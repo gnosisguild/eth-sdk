@@ -4,7 +4,7 @@ import { dirname, join } from 'path'
 import { EthSdkConfig } from '../config'
 import { traverseContractsMap } from '../config/traverse'
 import { fetchJson } from '../peripherals/fetchJson'
-import { EthSdkCtx } from '../types'
+import { Abi, EthSdkCtx } from '../types'
 import { detectProxy } from './detectProxy'
 import { getAbiFromEtherscan } from './etherscan/getAbiFromEtherscan'
 import { GetRpcProvider, getRpcProvider } from './getRpcProvider'
@@ -45,7 +45,8 @@ export async function gatherABIs(
       }
 
       await fs.ensureDir(dirname(fullAbiPath))
-      await fs.write(fullAbiPath, JSON.stringify(abi))
+
+      await fs.write(fullAbiPath, JSON.stringify(removeGasFields(abi)))
     }
   })
 }
@@ -59,3 +60,6 @@ const makeGetAbi = (config: EthSdkConfig): GetAbi => {
     }
   }
 }
+
+/** remove gas fields from all ABI fragments (ethers wrongly expects them as strings while they are actually numbers) */
+const removeGasFields = (abi: Abi): Abi => abi.map(({ gas, ...rest }) => rest)
