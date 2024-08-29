@@ -4,7 +4,7 @@ import { JsonRpcProvider } from 'ethers'
 
 import { env } from '../e2e-utils'
 import { getMainnetSdk, MainnetSdk } from './sdk'
-import type { Dai, Mkr, ProxyCustomImplementation, ProxyStandardStorageSlot, Uniswap } from './sdk/types'
+import type { Dai, Mkr, ProxyCustomImplementation, ProxyStandardStorageSlot, Uniswap, WithGasFields } from './sdk/types'
 
 describe('with ABIs from Etherscan', () => {
   const provider = new JsonRpcProvider(env.E2E_RPC)
@@ -22,6 +22,7 @@ describe('with ABIs from Etherscan', () => {
         {
           tokens: { dai: Dai; mkr: Mkr }
           uniswap: Uniswap
+          withGasFields: WithGasFields
           proxies: {
             proxyStandardStorageSlot: ProxyStandardStorageSlot
             proxyCustomImplementation: ProxyCustomImplementation

@@ -3,3 +3,4 @@ export type { proxies };
 import type * as tokens from "./tokens";
 export type { tokens };
 export type { Uniswap } from "./Uniswap";
+export type { WithGasFields } from "./WithGasFields";

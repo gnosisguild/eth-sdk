@@ -11,3 +11,5 @@ export type { Mkr } from "./mainnet/tokens/Mkr";
 export { Mkr__factory } from "./factories/mainnet/tokens/Mkr__factory";
 export type { Uniswap } from "./mainnet/Uniswap";
 export { Uniswap__factory } from "./factories/mainnet/Uniswap__factory";
+export type { WithGasFields } from "./mainnet/WithGasFields";
+export { WithGasFields__factory } from "./factories/mainnet/WithGasFields__factory";

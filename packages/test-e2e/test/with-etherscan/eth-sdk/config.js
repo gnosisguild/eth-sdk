@@ -8,6 +8,7 @@ const config = {
         mkr: '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2',
       },
       uniswap: '0x1F98431c8aD98523631AE4a59f267346ea31F984',
+      withGasFields: '0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7',
       proxies: {
         /**
          * transparent proxy pattern with standard storage slot
