@@ -24,6 +24,6 @@ export const realFs: Fs = {
   readDir: (path) => fsExtra.readdir(path),
   glob: promisify(glob),
   rmDir: (path) => {
-    fs.rmdirSync(path, { recursive: true })
+    fs.rmSync(path, { recursive: true })
   },
 }

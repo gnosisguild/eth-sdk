@@ -41,9 +41,6 @@ export function mockFilesystem(files: Record<FilePath, FileContents | DirectoryM
       return Object.keys(files).filter(minimatch.filter(pattern, options))
     },
     rmDir(path) {
-      if (files[normalize(path)] !== DirectoryMarker) {
-        throw new Error('Not a directory')
-      }
       delete files[normalize(path)]
     },
   }
