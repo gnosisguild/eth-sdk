@@ -1,5 +1,12 @@
 # @gnosis-guild/eth-sdk
 
+## 0.3.7
+
+### Patch Changes
+
+- e5497e6: fix: handling of deprecated `gas` fields in ABI (vyper contracts)
+- 9be0980: fix: no longer use rmdirSync API, which is deprecated on latest node v21
+
 ## 0.3.6
 
 ### Patch Changes
