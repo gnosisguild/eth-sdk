@@ -1,5 +1,11 @@
 # @gnosis-guild/eth-sdk
 
+## 0.4.1
+
+### Patch Changes
+
+- bf6508d: feat: add HyperEVM, Scroll, Plasma, MegaETH chains
+
 ## 0.4.0
 
 ### Minor Changes

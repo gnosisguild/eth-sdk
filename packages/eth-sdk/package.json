@@ -1,6 +1,6 @@
 {
   "name": "@gnosis-guild/eth-sdk",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "license": "MIT",
   "description": "🛠 Generate type-safe, lightweight SDK for your Ethereum smart contracts",
   "repository": {
