@@ -24,6 +24,10 @@ export enum NetworkID {
   BOB = 60808,
   HEMI = 43111,
   KATANA = 747474,
+  HYPEREVM = 999,
+  SCROLL = 534352,
+  PLASMA = 9745,
+  MEGAETH = 4326,
 }
 
 export const networkIDtoShortName = {
@@ -33,7 +37,7 @@ export const networkIDtoShortName = {
   [NetworkID.GNOSIS]: 'gno',
   [NetworkID.BASE]: 'base',
   [NetworkID.BASE_SEPOLIA]: 'basesep',
-  [NetworkID.BSC]: 'bsc',
+  [NetworkID.BSC]: 'bnb',
   [NetworkID.OPTIMISTIC_ETHEREUM]: 'oeth',
   [NetworkID.POLYGON]: 'matic',
   [NetworkID.ARBITRUM_ONE]: 'arb1',
@@ -51,7 +55,11 @@ export const networkIDtoShortName = {
   [NetworkID.LINEA]: 'linea',
   [NetworkID.INK]: 'ink',
   [NetworkID.BLAST]: 'blast',
-  [NetworkID.FLARE]: 'flare',
+  [NetworkID.FLARE]: 'flr',
+  [NetworkID.HYPEREVM]: 'hyperevm',
+  [NetworkID.SCROLL]: 'scr',
+  [NetworkID.PLASMA]: 'plasma',
+  [NetworkID.MEGAETH]: 'megaeth',
 } as const
 
 // To keep backward compatibility with old network symbols
@@ -77,12 +85,19 @@ export const networkIDtoLegacySymbol = {
   [NetworkID.INK]: 'ink',
   [NetworkID.BLAST]: 'blast',
   [NetworkID.FLARE]: 'flare',
+  [NetworkID.HYPEREVM]: 'hyperevm',
+  [NetworkID.SCROLL]: 'scroll',
+  [NetworkID.PLASMA]: 'plasma',
+  [NetworkID.MEGAETH]: 'megaeth',
 } as const
 
 export type NetworkShortName = (typeof networkIDtoShortName)[keyof typeof networkIDtoShortName]
 export type LegacyNetworkSymbol = (typeof networkIDtoLegacySymbol)[keyof typeof networkIDtoLegacySymbol]
 
 export type NetworkSymbol = NetworkShortName | LegacyNetworkSymbol
+
+export type PredefinedNetworkSymbol = LegacyNetworkSymbol
+export type UserProvidedNetworkSymbol = NetworkSymbol
 
 // export const shortNameToNetworkId: SafeDictionary<NetworkID, NetworkSymbol> = invert(networkIDtoShortName)
 // export const legacySymbolToNetworkId: SafeDictionary<NetworkID, NetworkSymbol> = invert(networkIDtoLegacySymbol)
